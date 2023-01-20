@@ -106,6 +106,11 @@
   :config
   (elfeed-org))
 
+;; packages auto update
+(use-package auto-package-update
+  :config
+  (auto-package-update-maybe))
+
 ;; custom settings file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (ignore-errors (load custom-file))
