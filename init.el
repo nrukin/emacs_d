@@ -67,6 +67,10 @@
 				 "Октябрь" "Ноябрь" "Декабрь"]
       calendar-month-abbrev-array ["Янв" "Фев" "Мар" "Апр" "Май" "Июн" "Июл" "Авг" "Сен" "Окт" "Ноя" "Дек"])
 
+;; ibuffer
+(use-package ibuffer
+  :bind ([remap list-buffers] . ibuffer))
+
 ;; org-mode activation
 ;; https://orgmode.org/manual/Activation.html
 (global-set-key (kbd "C-c l") #'org-store-link)
