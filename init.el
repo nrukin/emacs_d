@@ -93,6 +93,10 @@
 ;; org-mode capture templates
 (setq org-capture-templates '())
 (add-to-list 'org-capture-templates '("i" "Inbox" entry (file "~/org/inbox.org") "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:" :empty-lines 1))
+(add-to-list 'org-capture-templates '("e" "Event" entry	(file "~/org/inbox.org") "* PLANNED %? %(org-set-tags \"event\")\nSCHEDULED: %^T\n:PROPERTIES:\n:CREATED:  %U\n:END:" :empty-lines 1))
+(add-to-list 'org-capture-templates '("t" "Today" entry	(file "~/org/inbox.org") "* TODO %?\nSCHEDULED: %t\n:PROPERTIES:\n:CREATED:  %U\n:END:" :empty-lines 1))
+(add-to-list 'org-capture-templates '("a" "Timer" entry (file "~/org/inbox.org") "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:" :empty-lines 1 :clock-in t :clock-keep t))
+(add-to-list 'org-capture-templates '("z" "Dstrb" entry	(file "~/org/inbox.org") "* DONE %?\nCLOSED: %U\n:PROPERTIES:\n:CREATED:  %U\n:END:" :empty-lines 1 :clock-in t :clock-resume t))
 
 ;; org-superstar mode
 (use-package org-superstar
