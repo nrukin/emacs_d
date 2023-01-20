@@ -17,6 +17,11 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+;; monokai-theme
+(use-package monokai-theme
+  :config
+  (load-theme 'monokai t))
+
 ;; magit
 (use-package magit
   :init
