@@ -48,6 +48,10 @@
 (setq-default cursor-type 'bar)
 (if (fboundp 'blink-cursor-mode) (blink-cursor-mode 0))
 
+(when run-on-win-p
+  (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-10" ))
+  (set-face-attribute 'default t :font "DejaVu Sans Mono-10" ))
+
 ;; l8n
 (setq default-input-method "russian-computer")
 
