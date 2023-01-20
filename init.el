@@ -32,3 +32,7 @@
 ;; org-mode capture templates
 (setq org-capture-templates '())
 (add-to-list 'org-capture-templates '("i" "Inbox" entry (file "~/org/inbox.org") "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:" :empty-lines 1))
+
+;; custom settings file
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(ignore-errors (load custom-file))
