@@ -27,8 +27,35 @@
   :init
   (setq magit-commit-show-diff nil))
 
-;; input method
+;; hide menubar, scrollbar and toolbar
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+
+;; disable sounds
+(setq ring-bell-function 'ignore)
+
+;; hide dialog box
+(setq use-dialog-box nil)
+
+;; customize cursor
+(setq-default cursor-type 'bar)
+(if (fboundp 'blink-cursor-mode) (blink-cursor-mode 0))
+
+;; l8n
 (setq default-input-method "russian-computer")
+
+(setq calendar-week-start-day 1)
+
+(setq calendar-week-start-day 1
+      calendar-day-name-array ["Воскресенье" "Понедельник" "Вторник" "Среда"
+			       "Четверг" "Пятница" "Суббота"]
+      calendar-day-header-array ["Вс" "Пн" "Вт" "Ср" "Чт" "Пт" "Сб"]
+      calendar-day-abbrev-array ["Вск" "Пнд" "Втр" "Сре" "Чтв" "Птн" "Суб"]
+      calendar-month-name-array ["Январь" "Февраль" "Март" "Апрель" "Май"
+				 "Июнь" "Июль" "Август" "Сентябрь"
+				 "Октябрь" "Ноябрь" "Декабрь"]
+      calendar-month-abbrev-array ["Янв" "Фев" "Мар" "Апр" "Май" "Июн" "Июл" "Авг" "Сен" "Окт" "Ноя" "Дек"])
 
 ;; org-mode activation
 ;; https://orgmode.org/manual/Activation.html
