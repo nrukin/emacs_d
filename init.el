@@ -17,6 +17,9 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+;; run on windows predicate
+(defvar run-on-win-p (eq system-type 'windows-nt))
+
 ;; monokai-theme
 (use-package monokai-theme
   :config
