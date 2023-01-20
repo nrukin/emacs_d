@@ -87,6 +87,22 @@
 (use-package org-superstar
   :hook (org-mode . (lambda () (org-superstar-mode 1))))
 
+;; elfeed
+(use-package elfeed
+  :bind ("C-x w" . elfeed)
+  :init
+  (setq elfeed-search-title-max-width 100)
+  (when run-on-win-p
+    (setq elfeed-use-curl nil))
+  (defun elfeed-search-format-date (date)
+    (format-time-string "%Y-%m-%d %H:%M" (seconds-to-time date))))
+
+(use-package elfeed-org
+  :init
+  (setq rmh-elfeed-org-files '("~/org/elfeed.org"))
+  :config
+  (elfeed-org))
+
 ;; custom settings file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (ignore-errors (load custom-file))
