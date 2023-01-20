@@ -16,3 +16,17 @@
 (global-set-key (kbd "C-c l") #'org-store-link)
 (global-set-key (kbd "C-c a") #'org-agenda)
 (global-set-key (kbd "C-c c") #'org-capture)
+
+;; org-mode customize
+(setq org-hide-leading-stars t)
+(setq org-log-done 'time)
+(setq org-log-into-drawer t)
+(setq org-log-reschedule 'time)
+
+;; org-mode pathes
+(setq org-directory "~/org/")
+(setq org-agenda-files (list org-directory))
+
+;; org-mode capture templates
+(setq org-capture-templates '())
+(add-to-list 'org-capture-templates '("i" "Inbox" entry (file "~/org/inbox.org") "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:" :empty-lines 1))
