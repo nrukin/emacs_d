@@ -17,6 +17,11 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+;; magit
+(use-package magit
+  :init
+  (setq magit-commit-show-diff nil))
+
 ;; input method
 (setq default-input-method "russian-computer")
 
