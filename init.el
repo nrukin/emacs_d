@@ -30,6 +30,9 @@
   :init
   (setq magit-commit-show-diff nil))
 
+;; start maximized
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
 ;; hide menubar, scrollbar and toolbar
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
