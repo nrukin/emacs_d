@@ -22,6 +22,8 @@
 (setq org-log-done 'time)
 (setq org-log-into-drawer t)
 (setq org-log-reschedule 'time)
+(setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+(setq org-refile-use-outline-path 'file)
 
 ;; org-mode pathes
 (setq org-directory "~/org/")
