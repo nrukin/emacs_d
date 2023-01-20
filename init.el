@@ -3,6 +3,11 @@
 ;; created 20.01.2023
 ;;
 
+;; packages
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+
 ;; input method
 (setq default-input-method "russian-computer")
 
