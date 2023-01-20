@@ -18,6 +18,7 @@
 (global-set-key (kbd "C-c c") #'org-capture)
 
 ;; org-mode customize
+(setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "PLANNED(p)" "LATER(l)" "DELEGATED(g@)" "|" "DONE(d!)" "CANCELLED(c@)")))
 (setq org-hide-leading-stars t)
 (setq org-log-done 'time)
 (setq org-log-into-drawer t)
