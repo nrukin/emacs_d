@@ -67,6 +67,13 @@
 				 "Октябрь" "Ноябрь" "Декабрь"]
       calendar-month-abbrev-array ["Янв" "Фев" "Мар" "Апр" "Май" "Июн" "Июл" "Авг" "Сен" "Окт" "Ноя" "Дек"])
 
+;; emojify
+(use-package emojify
+  :hook (after-init . global-emojify-mode))
+
+;; discover
+(use-package discover)
+
 ;; ibuffer
 (use-package ibuffer
   :bind ([remap list-buffers] . ibuffer))
