@@ -208,6 +208,9 @@
   (mastodon-discover)
   (mastodon-toot--enable-custom-emoji)
   (setq mastodon-tl--show-avatars t))
+;; in secret file setup:
+;; (setq mastodon-active-user "username")
+;; (setq mastodon-instance-url "https://example.com")
 
 ;; load secret file
 (ignore-errors (load (expand-file-name "secret.el" user-emacs-directory)))
