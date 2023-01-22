@@ -202,6 +202,13 @@
 
 (global-set-key (kbd "C-c q") 'save-sync-and-quit)
 
+;; mastodon
+(use-package mastodon
+  :config
+  (mastodon-discover)
+  (mastodon-toot--enable-custom-emoji)
+  (setq mastodon-tl--show-avatars t))
+
 ;; load secret file
 (ignore-errors (load (expand-file-name "secret.el" user-emacs-directory)))
 
