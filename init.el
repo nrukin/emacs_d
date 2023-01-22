@@ -78,6 +78,21 @@
 (use-package ibuffer
   :bind ([remap list-buffers] . ibuffer))
 
+;; files backup directory
+(let ((backup-dir (format "%sbackups" (file-name-directory user-init-file))))
+  (add-to-list 'backup-directory-alist `("." . ,backup-dir)))
+
+(setq version-control t)
+(setq delete-old-versions t)
+(setq kept-new-versions 4)
+(setq kept-old-versions 4)
+
+;; revert files on disk change
+(global-auto-revert-mode t)
+
+;; simple dialogs
+(fset 'yes-or-no-p 'y-or-n-p)
+
 ;; org-mode activation
 ;; https://orgmode.org/manual/Activation.html
 (global-set-key (kbd "C-c l") #'org-store-link)
