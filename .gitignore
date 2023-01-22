@@ -8,3 +8,5 @@
 /.last-package-update-day
 /mastodon.plstore
 /secret.el
+/persist/
+/emojis/
