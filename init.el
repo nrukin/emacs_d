@@ -179,6 +179,10 @@
     (kill-emacs)))
 
 (global-set-key (kbd "C-c q") 'save-sync-and-quit)
+
+;; load secret file
+(ignore-errors (load (expand-file-name "secret.el" user-emacs-directory)))
+
 ;; custom settings file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (ignore-errors (load custom-file))
