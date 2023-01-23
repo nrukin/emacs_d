@@ -152,6 +152,9 @@
   :config
   (auto-package-update-maybe))
 
+;; json-mode
+(use-package json-mode)
+
 ;; rclone orc-cat sync
 
 (defvar rclone-path "" "path to rclone binary")
