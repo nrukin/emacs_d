@@ -212,6 +212,13 @@
 ;; (setq mastodon-active-user "username")
 ;; (setq mastodon-instance-url "https://example.com")
 
+;; windows-rus shell encoding
+(defun windows-shell-encoding-config ()
+  (defadvice shell (after my-shell-advice)
+    (set-process-coding-system (get-buffer-process (current-buffer)) 'cp1251 'cp1251))
+  (ad-activate 'shell))
+;;run function in secret.el on windows machine
+
 ;; load secret file
 (ignore-errors (load (expand-file-name "secret.el" user-emacs-directory)))
 
