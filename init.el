@@ -139,7 +139,11 @@
   (when run-on-win-p
     (setq elfeed-use-curl nil))
   (defun elfeed-search-format-date (date)
-    (format-time-string "%Y-%m-%d %H:%M" (seconds-to-time date))))
+    (format-time-string "%Y-%m-%d %H:%M" (seconds-to-time date)))
+  :config
+  ;; run secret elfeed config
+  (when (fboundp 'elfeed-afterconf)
+    (elfeed-afterconf)))
 
 (use-package elfeed-org
   :init
