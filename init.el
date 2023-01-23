@@ -17,8 +17,12 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-;; run on windows predicate
+;; local functions
 (defvar run-on-win-p (eq system-type 'windows-nt))
+(defvar load-mastodon nil)
+
+;; load secret file
+(ignore-errors (load (expand-file-name "secret.el" user-emacs-directory)))
 
 ;; monokai-theme
 (use-package monokai-theme
@@ -204,6 +208,7 @@
 
 ;; mastodon
 (use-package mastodon
+  :if load-mastodon
   :config
   (mastodon-discover)
   (mastodon-toot--enable-custom-emoji)
@@ -215,8 +220,8 @@
     (set-process-coding-system (get-buffer-process (current-buffer)) 'cp1251 'cp1251))
   (ad-activate 'shell))
 
-;; load secret file
-(ignore-errors (load (expand-file-name "secret.el" user-emacs-directory)))
+(when (fboundp 'secret-afterconf)
+ (secret-afterconf))
 
 ;; custom settings file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
