@@ -94,6 +94,9 @@
 ;; revert files on disk change
 (global-auto-revert-mode t)
 
+;; do not create lock-files
+(setq create-lockfiles nil)
+
 ;; simple dialogs
 (fset 'yes-or-no-p 'y-or-n-p)
 
