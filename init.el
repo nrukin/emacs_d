@@ -220,6 +220,7 @@
     (set-process-coding-system (get-buffer-process (current-buffer)) 'cp1251 'cp1251))
   (ad-activate 'shell))
 
+;; run secret function late configuration
 (when (fboundp 'secret-afterconf)
  (secret-afterconf))
 
