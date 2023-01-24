@@ -157,7 +157,7 @@
             ""
             (lambda (&rest _) (elfeed))))
 	  ;; mastodon line
-	  ((,(all-the-icons-faicon "trash" :height 1.1 :v-adjust 0.0)
+	  ((,(all-the-icons-faicon "comments-o" :height 1.1 :v-adjust 0.0)
             "Mastodon"
             ""
             (lambda (&rest _) (mastodon))))))
