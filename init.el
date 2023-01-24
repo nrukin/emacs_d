@@ -145,6 +145,23 @@
                         (registers . 5)))
   (setq dashboard-startup-banner 'logo)
   (setq dashboard-center-content t)
+
+  ;; add navigator
+  (setq dashboard-set-navigator t)
+  ;; Format: "(icon title help action face prefix suffix)"
+
+  (setq dashboard-navigator-buttons
+	`(;; elfeed line
+	  ((,(all-the-icons-faicon "rss" :height 1.1 :v-adjust 0.0)
+            "Elfeed"
+            ""
+            (lambda (&rest _) (elfeed))))
+	  ;; mastodon line
+	  ((,(all-the-icons-faicon "trash" :height 1.1 :v-adjust 0.0)
+            "Mastodon"
+            ""
+            (lambda (&rest _) (mastodon))))))
+
   (dashboard-setup-startup-hook))
 
 ;; elfeed
