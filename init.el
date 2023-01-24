@@ -151,16 +151,21 @@
   ;; Format: "(icon title help action face prefix suffix)"
 
   (setq dashboard-navigator-buttons
-	`(;; elfeed line
+	`(;; elfeed
 	  ((,(all-the-icons-faicon "rss" :height 1.1 :v-adjust 0.0)
             "Elfeed"
             ""
             (lambda (&rest _) (elfeed))))
-	  ;; mastodon line
+	  ;; mastodon
 	  ((,(all-the-icons-faicon "comments-o" :height 1.1 :v-adjust 0.0)
             "Mastodon"
             ""
-            (lambda (&rest _) (mastodon))))))
+            (lambda (&rest _) (mastodon))))
+	  ;; org-agenda
+	  ((,(all-the-icons-faicon "calendar" :height 1.1 :v-adjust 0.0)
+            "Agenda"
+            ""
+            (lambda (&rest _) (org-agenda-list))))))
 
   (dashboard-setup-startup-hook))
 
