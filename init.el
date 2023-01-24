@@ -132,8 +132,6 @@
   :hook (org-mode . (lambda () (org-superstar-mode 1))))
 
 ;; all the icons
-;; run command to install fonts
-;; M-x all-the-icons-install-fonts
 (use-package all-the-icons
   :if (display-graphic-p))
 
