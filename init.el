@@ -131,6 +131,24 @@
 (use-package org-superstar
   :hook (org-mode . (lambda () (org-superstar-mode 1))))
 
+;; all the icons
+;; run command to install fonts
+;; M-x all-the-icons-install-fonts
+(use-package all-the-icons
+  :if (display-graphic-p))
+
+;; dashboard
+(use-package dashboard
+  :config
+  (setq dashboard-set-heading-icons t)
+  (setq dashboard-set-file-icons t)
+  (setq dashboard-items '((recents  . 5)
+                        (bookmarks . 5)
+                        (registers . 5)))
+  (setq dashboard-startup-banner 'logo)
+  (setq dashboard-center-content t)
+  (dashboard-setup-startup-hook))
+
 ;; elfeed
 (use-package elfeed
   :bind ("C-x w" . elfeed)
