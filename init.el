@@ -174,6 +174,10 @@
 ;; json-mode
 (use-package json-mode)
 
+;; markdown-mode
+(use-package markdown-mode
+  :mode ("README\\.md\\'" . gfm-mode))
+
 ;; rclone orc-cat sync
 
 (defvar rclone-path "" "path to rclone binary")
