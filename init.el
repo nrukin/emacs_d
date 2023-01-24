@@ -152,13 +152,12 @@
 ;; elfeed
 (use-package elfeed
   :bind ("C-x w" . elfeed)
-  :init
-  (setq elfeed-search-title-max-width 100)
+  :config
   (when run-on-win-p
     (setq elfeed-use-curl nil))
   (defun elfeed-search-format-date (date)
     (format-time-string "%Y-%m-%d %H:%M" (seconds-to-time date)))
-  :config
+  (setq elfeed-search-title-max-width 100)
   ;; run secret elfeed config
   (when (fboundp 'elfeed-afterconf)
     (elfeed-afterconf)))
