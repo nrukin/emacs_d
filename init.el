@@ -29,6 +29,10 @@
   :config
   (load-theme 'monokai t))
 
+(use-package which-key
+  :config
+  (which-key-mode))
+
 ;; magit
 (use-package magit
   :init
