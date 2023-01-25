@@ -302,6 +302,11 @@
   (mastodon-toot--enable-custom-emoji)
   (setq mastodon-tl--show-avatars t))
 
+(use-package lingva
+  :if load-mastodon
+  :config
+  (setq lingva-target "ru"))
+
 ;; windows-rus shell encoding
 (defun windows-shell-encoding-config ()
   (defadvice shell (after my-shell-advice)
