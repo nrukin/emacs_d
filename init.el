@@ -195,6 +195,36 @@
   :config
   (auto-package-update-maybe))
 
+;; go
+(use-package go-mode
+  :init
+  (setq gofmt-command "goimports")
+  :hook
+  (add-hook (before-save . gofmt-before-save))
+  :config
+  (add-hook 'go-mode-hook
+	    (lambda ()
+	      (local-set-key [f5] 'project-compile))))
+
+(use-package go-dlv)
+(use-package gotest)
+
+;; eglot
+(use-package eglot
+  :hook (go-mode . eglot-ensure))
+
+;; company
+(use-package company
+  :hook prog-mode)
+
+;; compiling
+
+(setq compilation-ask-about-save nil)
+
+(add-to-list 'safe-local-variable-values '(compilation-scroll-output . t))
+(add-to-list 'safe-local-variable-values '(compilation-read-command))
+(add-to-list 'safe-local-variable-values '(compile-command . "go run ."))
+
 ;; json-mode
 (use-package json-mode)
 
