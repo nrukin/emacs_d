@@ -76,8 +76,7 @@
       calendar-month-abbrev-array ["Янв" "Фев" "Мар" "Апр" "Май" "Июн" "Июл" "Авг" "Сен" "Окт" "Ноя" "Дек"])
 
 ;; emojify
-(use-package emojify
-  :hook (after-init . global-emojify-mode))
+(use-package emojify)
 
 ;; discover
 (use-package discover)
