@@ -12,3 +12,5 @@
 /emojis/
 /.org-id-locations
 /recentf
+\#*\#
+session.*
