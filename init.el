@@ -177,16 +177,14 @@
     (setq elfeed-use-curl nil))
   (defun elfeed-search-format-date (date)
     (format-time-string "%Y-%m-%d %H:%M" (seconds-to-time date)))
-  (setq elfeed-search-title-max-width 100)
-  ;; run secret elfeed config
-  (when (fboundp 'elfeed-afterconf)
-    (elfeed-afterconf)))
+  (setq elfeed-search-title-max-width 100))
 
 (use-package elfeed-org
   :init
   (setq rmh-elfeed-org-files '("~/org/elfeed.org"))
   :config
-  (elfeed-org))
+  (elfeed-org)
+  (ignore-errors (org-babel-load-file "~/org/elfeed.org")))
 
 ;; packages auto update
 (use-package auto-package-update
