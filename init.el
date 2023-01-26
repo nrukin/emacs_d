@@ -138,6 +138,10 @@
 (use-package all-the-icons
   :if (display-graphic-p))
 
+(use-package all-the-icons-dired
+  :requires all-the-icons
+  :hook (dired-mode . all-the-icons-dired-mode))
+
 ;; dashboard
 (use-package dashboard
   :config
