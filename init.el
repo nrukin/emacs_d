@@ -168,12 +168,8 @@
 (use-package go-mode
   :init
   (setq gofmt-command "goimports")
-  :hook
-  (add-hook (before-save . gofmt-before-save))
-  :config
-  (add-hook 'go-mode-hook
-	    (lambda ()
-	      (local-set-key [f5] 'project-compile))))
+  :hook ((before-save . gofmt-before-save)
+	 (go-mode . (lambda () (local-set-key [f5] 'project-compile)))))
 
 (use-package go-dlv)
 (use-package gotest)
