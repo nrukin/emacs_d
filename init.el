@@ -292,6 +292,12 @@
 
 (global-set-key (kbd "C-c q") 'save-sync-and-quit)
 
+(use-package verb
+  :after (org)
+  :config
+  (with-eval-after-load 'org
+    (define-key org-mode-map (kbd "C-c C-r") verb-command-map)))
+
 ;; hydra
 (use-package hydra
   :defer 2
