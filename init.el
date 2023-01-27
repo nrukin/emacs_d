@@ -298,6 +298,7 @@
 ;; mastodon
 (use-package mastodon
   :if load-mastodon
+  :bind ("C-x y" . mastodon)
   :config
   (mastodon-discover)
   (mastodon-toot--enable-custom-emoji)
