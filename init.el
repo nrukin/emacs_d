@@ -294,6 +294,10 @@
     ("r" org-clock-report)
     ("l" org-clock-in-last-with-prefix-arg)))
 
+;; nyan-mode
+(use-package nyan-mode
+  :config
+  (nyan-mode t))
 
 ;; mastodon
 (use-package mastodon
