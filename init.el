@@ -164,6 +164,12 @@
   :config
   (auto-package-update-maybe))
 
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(electric-pair-mode 1)
+
+(use-package rainbow-delimiters
+  :hook prog-mode)
+
 ;; go
 (use-package go-mode
   :init
