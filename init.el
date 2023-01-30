@@ -325,9 +325,11 @@
   :config
   (setq dashboard-set-heading-icons t)
   (setq dashboard-set-file-icons t)
+  (setq dashboard-projects-backend 'project-el)
   (setq dashboard-items '((recents  . 5)
                         (bookmarks . 5)
-                        (registers . 5)))
+                        (registers . 5)
+			(projects . 5)))
   (setq dashboard-startup-banner 'logo)
   (setq dashboard-center-content t)
 
