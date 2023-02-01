@@ -141,6 +141,10 @@
 (add-to-list 'org-capture-templates '("z" "Dstrb" entry	(file "~/org/inbox.org") "* DONE %?\nCLOSED: %U\n:PROPERTIES:\n:CREATED:  %U\n:END:" :empty-lines 1 :clock-in t :clock-resume t))
 (add-to-list 'org-capture-templates '("c" "Cntct" entry	(file "~/org/contacts.org") "* %(org-contacts-template-name)\n:PROPERTIES:\n:EMAIL:  %(org-contacts-template-email)\n:END:" :empty-lines 1))
 
+;; org-habits
+(add-to-list 'org-modules 'org-habit t)
+(setq org-habit-graph-column 56)
+
 ;; all the icons
 (use-package all-the-icons
   :if (display-graphic-p))
