@@ -161,7 +161,18 @@
     (setq elfeed-use-curl nil))
   (defun elfeed-search-format-date (date)
     (format-time-string "%Y-%m-%d %H:%M" (seconds-to-time date)))
-  (setq elfeed-search-title-max-width 100))
+  (setq elfeed-search-title-max-width 100)
+  (defun elfeed-org-capture-template ()
+    (if elfeed-show-entry (let ((link (elfeed-entry-link elfeed-show-entry))
+				(title (elfeed-entry-title elfeed-show-entry))
+				(tags (elfeed-entry-tags elfeed-show-entry)))
+			    (format "* TODO %s %s\n:PROPERTIES:\n:CREATED: %%U\n:END:\n%s\n%%?" title tags link)) "* %?"))
+
+  (add-to-list 'org-capture-templates '("f" "Elfeed" entry
+					(file "~/org/inbox.org")
+					(function elfeed-org-capture-template) :empty-lines 1  :immediate-finish t))
+
+  )
 
 (use-package elfeed-org
   :init
