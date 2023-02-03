@@ -11,7 +11,7 @@ M-x all-the-icons-install-fonts
 + `F9` - Команды учета рабочего времени
 
 ## Сохранение открытой статьи elfeed в org-mode
-`C-c c f` - Сохраняет открытую страницу elfeed в org-файле inbox
+`C-c c f` - Сохраняет открытую страницу elfeed в org-файле `inbox.org`
 
 ## Примеры файлов
 ### secret.el
