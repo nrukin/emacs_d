@@ -145,6 +145,12 @@
 (add-to-list 'org-modules 'org-habit t)
 (setq org-habit-graph-column 56)
 
+;; use ID-s for links
+(use-package org-id
+  :ensure nil
+  :init
+  (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id))
+
 ;; all the icons
 (use-package all-the-icons
   :if (display-graphic-p))
