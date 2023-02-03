@@ -172,7 +172,7 @@
     (if elfeed-show-entry (let ((link (elfeed-entry-link elfeed-show-entry))
 				(title (elfeed-entry-title elfeed-show-entry))
 				(tags (elfeed-entry-tags elfeed-show-entry)))
-			    (format "* TODO %s %s\n:PROPERTIES:\n:CREATED: %%U\n:END:\n%s\n%%?" title tags link)) "* %?"))
+			    (format "* TODO %s %s%%(org-set-tags \"elfeed\")\n:PROPERTIES:\n:CREATED: %%U\n:END:\n%s\n%%?" title tags link)) "* %?"))
 
   (add-to-list 'org-capture-templates '("f" "Elfeed" entry
 					(file "~/org/inbox.org")
