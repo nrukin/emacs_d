@@ -227,6 +227,9 @@
 ;; json-mode
 (use-package json-mode)
 
+;; auto-hotkey
+(use-package ahk-mode)
+
 ;; markdown-mode
 (use-package markdown-mode
   :mode ("README\\.md\\'" . gfm-mode))
