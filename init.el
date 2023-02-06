@@ -49,20 +49,6 @@
 (when load-mastodon
   (ignore-errors (load (expand-file-name "mastodon.el" user-emacs-directory))))
 
-(defun load-modular-config-files (filelist)
-  (dolist (file filelist)
-    (let ((modular-config-file (expand-file-name (format "%s.el" file) user-emacs-directory)))
-      (when (file-exists-p modular-config-file)
-	(load-file modular-config-file)))))
-
-(load-modular-config-files '("prog"
-			     "org"
-			     "elfeed"
-			     "magit"
-			     "rclone-org"
-			     "theme"		       
-			     "mastodon"))
-
 ;; run secret function late configuration
 (when (fboundp 'secret-afterconf)
   (secret-afterconf))
