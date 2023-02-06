@@ -24,387 +24,48 @@
 ;; load secret file
 (ignore-errors (load (expand-file-name "secret.el" user-emacs-directory)))
 
-;; monokai-theme
-(use-package monokai-theme
-  :config
-  (load-theme 'monokai t))
-
-(use-package which-key
-  :config
-  (which-key-mode))
-
-;; magit
-(use-package magit
-  :init
-  (setq magit-commit-show-diff nil))
-
-;; start maximized
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
-
-;; hide menubar, scrollbar and toolbar
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-
-;; disable sounds
-(setq ring-bell-function 'ignore)
-
-;; hide dialog box
-(setq use-dialog-box nil)
-
-;; customize cursor
-(setq-default cursor-type 'bar)
-(if (fboundp 'blink-cursor-mode) (blink-cursor-mode 0))
-
-(when run-on-win-p
-  (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-10" ))
-  (set-face-attribute 'default t :font "DejaVu Sans Mono-10" ))
-
-;; l8n
-(setq default-input-method "russian-computer")
-
-(setq calendar-week-start-day 1)
-
-(setq calendar-week-start-day 1
-      calendar-day-name-array ["Воскресенье" "Понедельник" "Вторник" "Среда"
-			       "Четверг" "Пятница" "Суббота"]
-      calendar-day-header-array ["Вс" "Пн" "Вт" "Ср" "Чт" "Пт" "Сб"]
-      calendar-day-abbrev-array ["Вск" "Пнд" "Втр" "Сре" "Чтв" "Птн" "Суб"]
-      calendar-month-name-array ["Январь" "Февраль" "Март" "Апрель" "Май"
-				 "Июнь" "Июль" "Август" "Сентябрь"
-				 "Октябрь" "Ноябрь" "Декабрь"]
-      calendar-month-abbrev-array ["Янв" "Фев" "Мар" "Апр" "Май" "Июн" "Июл" "Авг" "Сен" "Окт" "Ноя" "Дек"])
-
-;; emojify
-(use-package emojify)
-
-;; discover
-(use-package discover)
-
-;; ibuffer
-(use-package ibuffer
-  :bind ([remap list-buffers] . ibuffer))
-
-;; files backup directory
-(let ((backup-dir (format "%sbackups" (file-name-directory user-init-file))))
-  (add-to-list 'backup-directory-alist `("." . ,backup-dir)))
-
-(setq version-control t)
-(setq delete-old-versions t)
-(setq kept-new-versions 4)
-(setq kept-old-versions 4)
-
-;; revert files on disk change
-(global-auto-revert-mode t)
-
-;; do not create lock-files
-(setq create-lockfiles nil)
-
-;; simple dialogs
-(fset 'yes-or-no-p 'y-or-n-p)
-
-;; org-mode activation
-;; https://orgmode.org/manual/Activation.html
-(global-set-key (kbd "C-c l") #'org-store-link)
-(global-set-key (kbd "C-c a") #'org-agenda)
-(global-set-key (kbd "C-c c") #'org-capture)
-
-;; org-mode customize
-(setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "PLANNED(p)" "LATER(l)" "DELEGATED(g@)" "|" "DONE(d!)" "CANCELLED(c@)")))
-(setq org-hide-leading-stars t)
-(setq org-log-done 'time)
-(setq org-log-into-drawer t)
-(setq org-log-reschedule 'time)
-(setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
-(setq org-refile-use-outline-path 'file)
-
-;; org-mode pathes
-(setq org-directory "~/org/")
-(setq org-agenda-files (list org-directory))
-
-
-;; org-superstar mode
-(use-package org-superstar
-  :hook (org-mode . (lambda () (org-superstar-mode 1))))
-
-;; org-contacts
-(use-package  org-contacts
-    :config
-    (setq org-contacts-files '("~/org/contacts.org")))
-
-;; org-mode capture templates
-(setq org-capture-templates '())
-(add-to-list 'org-capture-templates '("i" "Inbox" entry (file "~/org/inbox.org") "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:" :empty-lines 1))
-(add-to-list 'org-capture-templates '("e" "Event" entry	(file "~/org/inbox.org") "* PLANNED %? %(org-set-tags \"event\")\nSCHEDULED: %^T\n:PROPERTIES:\n:CREATED:  %U\n:END:" :empty-lines 1))
-(add-to-list 'org-capture-templates '("t" "Today" entry	(file "~/org/inbox.org") "* TODO %?\nSCHEDULED: %t\n:PROPERTIES:\n:CREATED:  %U\n:END:" :empty-lines 1))
-(add-to-list 'org-capture-templates '("a" "Timer" entry (file "~/org/inbox.org") "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:" :empty-lines 1 :clock-in t :clock-keep t))
-(add-to-list 'org-capture-templates '("z" "Dstrb" entry	(file "~/org/inbox.org") "* DONE %?\nCLOSED: %U\n:PROPERTIES:\n:CREATED:  %U\n:END:" :empty-lines 1 :clock-in t :clock-resume t))
-(add-to-list 'org-capture-templates '("c" "Cntct" entry	(file "~/org/contacts.org") "* %(org-contacts-template-name)\n:PROPERTIES:\n:EMAIL:  %(org-contacts-template-email)\n:END:" :empty-lines 1))
-
-;; org-habits
-(add-to-list 'org-modules 'org-habit t)
-(setq org-habit-graph-column 56)
-
-;; use ID-s for links
-(use-package org-id
-  :ensure nil
-  :init
-  (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id))
-
-;; all the icons
-(use-package all-the-icons
-  :if (display-graphic-p))
-
-(use-package all-the-icons-dired
-  :requires all-the-icons
-  :hook (dired-mode . all-the-icons-dired-mode))
-
-;; elfeed
-(use-package elfeed
-  :bind ("C-x w" . elfeed)
-  :config
-  (when run-on-win-p
-    (setq elfeed-use-curl nil))
-  (defun elfeed-search-format-date (date)
-    (format-time-string "%Y-%m-%d %H:%M" (seconds-to-time date)))
-  (setq elfeed-search-title-max-width 100)
-  (defun elfeed-org-capture-template ()
-    (if elfeed-show-entry (let ((link (elfeed-entry-link elfeed-show-entry))
-				(title (elfeed-entry-title elfeed-show-entry))
-				(tags (elfeed-entry-tags elfeed-show-entry)))
-			    (format "* TODO %s %s%%(org-set-tags \"elfeed\")\n:PROPERTIES:\n:CREATED: %%U\n:END:\n%s\n%%?" title tags link)) "* %?"))
-
-  (add-to-list 'org-capture-templates '("f" "Elfeed" entry
-					(file "~/org/inbox.org")
-					(function elfeed-org-capture-template) :empty-lines 1  :immediate-finish t))
-
-  )
-
-(use-package elfeed-org
-  :init
-  (setq rmh-elfeed-org-files '("~/org/elfeed.org"))
-  :config
-  (elfeed-org)
-  (ignore-errors (org-babel-load-file "~/org/elfeed.org")))
-
-;; packages auto update
-(use-package auto-package-update
-  :config
-  (auto-package-update-maybe))
-
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
-(electric-pair-mode 1)
-
-(use-package rainbow-delimiters
-  :hook prog-mode)
-
-;; go
-(use-package go-mode
-  :init
-  (setq gofmt-command "goimports")
-  :hook ((before-save . gofmt-before-save)
-	 (go-mode . (lambda () (local-set-key [f5] 'project-compile)))))
-
-(use-package go-dlv)
-(use-package gotest)
-
-;; eglot
-(use-package eglot
-  :hook (go-mode . eglot-ensure))
-
-;; company
-(use-package company
-  :hook prog-mode)
-
-;; compiling
-
-(setq compilation-ask-about-save nil)
-
-(add-to-list 'safe-local-variable-values '(compilation-scroll-output . t))
-(add-to-list 'safe-local-variable-values '(compilation-read-command))
-(add-to-list 'safe-local-variable-values '(compile-command . "go run ."))
-
-;; json-mode
-(use-package json-mode)
-
-;; auto-hotkey
-(use-package ahk-mode)
-
-;; markdown-mode
-(use-package markdown-mode
-  :mode ("README\\.md\\'" . gfm-mode))
-
-;; rclone orc-cat sync
-
-(defvar rclone-path "" "path to rclone binary")
-(defvar rclone-log-path "" "path to sync log file")
-(defvar rclone-filter-path "" "path to rclone filter path")
-(defvar rclone-local-path "" "path to local directory")
-(defvar rclone-remote-path "" "path to remote directory")
-(defvar rclone-remote-backup "" "path to remote backup directory")
-(defvar rclone-local-backup "" "path to local backup directory")
-
-(defun rclone-org-upload ()
-  "upload org-files to remote via rclone"
-  (interactive)
-    (shell-command (format "%s sync --filter-from %s --log-file %s --log-level INFO --backup-dir %s %s %s"
-	rclone-path
-	rclone-filter-path
-	rclone-log-path
-	(concat rclone-remote-backup "remote\\" (format-time-string "%Y%m%d_%H%M%S" (current-time)))
-	rclone-local-path
-	rclone-remote-path))
-    (message "Upload complete"))
-
-(defun rclone-org-download ()
-  "download org-files from remote via rclone"
-  (interactive)
-    (shell-command (format "%s sync --filter-from %s --log-file %s --log-level INFO --backup-dir %s %s %s"
-	rclone-path
-	rclone-filter-path
-	rclone-log-path
-	(concat rclone-local-backup (format-time-string "%Y%m%d_%H%M%S" (current-time)))
-	rclone-remote-path
-	rclone-local-path))
-    (message "Download complete"))
-
-(defun rclone-backup-upload ()
-  "upload backup files to cloud storage"
-  (interactive)
-    (elfeed-db-save)
-    (shell-command (format "%s move --log-file %s --log-level INFO --delete-empty-src-dirs %s %s"
-	rclone-path
-	rclone-log-path
-	rclone-local-backup
-	(concat rclone-remote-backup (system-name) "\\")
-	))
-    (message "Backup move complete"))
-
-(defun save-sync-and-quit ()
-  (interactive)
-  (when (y-or-n-p "Save, sync and exit emacs?")
-    (when (org-clocking-buffer)
-      (org-clock-out))
-    (save-some-buffers t)
-    (rclone-org-upload)
-    (kill-emacs)))
-
-(global-set-key (kbd "C-c q") 'save-sync-and-quit)
-
-(use-package verb
-  :after (org)
-  :config
-  (with-eval-after-load 'org
-    (define-key org-mode-map (kbd "C-c C-r") verb-command-map)))
-
-;; hydra
-(use-package hydra
-  :defer 2
-  :bind ("<f9>" . hydra-clock/body)
-  :config
-  (defun org-clock-in-last-with-prefix-arg ()
-    (interactive)
-    (setq current-prefix-arg '(4)) ; C-u
-    (call-interactively 'org-clock-in-last))
-  (defhydra hydra-clock (:color blue)
-    "
-    ^
-    ^Clock^             ^Do^
-    ^─────^─────────────^──^─────────
-    _q_ quit            _c_ cancel
-    ^^                  _d_ display
-    ^^                  _e_ effort
-    ^^                  _i_ in
-    ^^                  _j_ jump
-    ^^                  _o_ out
-    ^^                  _r_ report
-    ^^                  _l_ continue last
-    ^^                  ^^
-    "
-    ("q" nil)
-    ("c" org-clock-cancel :color pink)
-    ("d" org-clock-display)
-    ("e" org-clock-modify-effort-estimate)
-    ("i" org-clock-in)
-    ("j" org-clock-goto)
-    ("o" org-clock-out)
-    ("r" org-clock-report)
-    ("l" org-clock-in-last-with-prefix-arg)))
-
-;; nyan-mode
-(use-package nyan-mode
-  :config
-  (nyan-mode t))
-
-;; mastodon
-(use-package mastodon
-  :if load-mastodon
-  :bind ("C-x y" . mastodon)
-  :config
-  (mastodon-discover)
-  (mastodon-toot--enable-custom-emoji)
-  (setq mastodon-tl--show-avatars t)
-  (setq mastodon-toot--enable-custom-instance-emoji t))
-
-(use-package lingva
-  :if load-mastodon
-  :config
-  (setq lingva-target "ru"))
-
 ;; windows-rus shell encoding
 (defun windows-shell-encoding-config ()
   (defadvice shell (after my-shell-advice)
     (set-process-coding-system (get-buffer-process (current-buffer)) 'cp1251 'cp1251))
   (ad-activate 'shell))
 
-;; dashboard
-(use-package dashboard
-  :config
-  (setq dashboard-set-heading-icons t)
-  (setq dashboard-set-file-icons t)
-  (setq dashboard-projects-backend 'project-el)
-  (setq dashboard-items '((recents  . 5)
-                        (bookmarks . 5)
-                        (registers . 5)
-			(projects . 5)))
-  (setq dashboard-startup-banner 'logo)
-  (setq dashboard-center-content t)
+(defun load-modular-config-files (filelist)
+  (dolist (file filelist)
+    (let ((modular-config-file (expand-file-name (format "%s.el" file) user-emacs-directory)))
+      (when (file-exists-p modular-config-file)
+	(load-file modular-config-file)))))
 
-  ;; add navigator
-  (setq dashboard-set-navigator t)
+(load-modular-config-files '("glob"
+			     "prog"
+			     "org"
+			     "elfeed"
+			     "magit"
+			     "dashboard"
+			     "hydra"
+			     "rclone-org"))
 
-  ;; Format: "(icon title help action face prefix suffix)"
-  (setq dashboard-navigator-buttons
-	`(;; elfeed
-	  ((,(all-the-icons-faicon "rss" :height 1.1 :v-adjust 0.0)
-            "Elfeed"
-            ""
-            (lambda (&rest _) (elfeed))))
-	  ;; mastodon
-	  ((,(all-the-icons-faicon "comments-o" :height 1.1 :v-adjust 0.0)
-            "Mastodon"
-            ""
-            (lambda (&rest _) (mastodon))))
-	  ;; org-agenda
-	  ((,(all-the-icons-faicon "calendar" :height 1.1 :v-adjust 0.0)
-            "Agenda"
-            ""
-            (lambda (&rest _) (org-agenda-list))))
-	  ;; rclone org download, upload
-	  ((,(all-the-icons-faicon "download" :height 1.1 :v-adjust 0.0)
-            "ROD"
-            "rclone-org-download"
-            (lambda (&rest _) (rclone-org-download)))
-	   (,(all-the-icons-faicon "upload" :height 1.1 :v-adjust 0.0)
-           "ROU"
-           "rclone-org-upload"
-           (lambda (&rest _) (rclone-org-upload))))))
+;; load mastodon only if need to
+(when load-mastodon
+  (ignore-errors (load (expand-file-name "mastodon.el" user-emacs-directory))))
 
-  (dashboard-setup-startup-hook))
+(defun load-modular-config-files (filelist)
+  (dolist (file filelist)
+    (let ((modular-config-file (expand-file-name (format "%s.el" file) user-emacs-directory)))
+      (when (file-exists-p modular-config-file)
+	(load-file modular-config-file)))))
+
+(load-modular-config-files '("prog"
+			     "org"
+			     "elfeed"
+			     "magit"
+			     "rclone-org"
+			     "theme"		       
+			     "mastodon"))
 
 ;; run secret function late configuration
 (when (fboundp 'secret-afterconf)
- (secret-afterconf))
+  (secret-afterconf))
 
 ;; custom settings file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
