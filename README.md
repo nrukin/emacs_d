@@ -75,3 +75,12 @@ M-x all-the-icons-install-fonts
 #+end_src
 
 ```
+### `~/org_sync/filters/org`
+
+```
+- *~
+- .#*
+- .~*#
+- #*#
+- .git/*
+```
