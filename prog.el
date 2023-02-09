@@ -1,5 +1,9 @@
-;; draw line numbers
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+;; prog mode config:
+;; - display line numbers
+;; - truncate lines
+(add-hook 'prog-mode-hook (lambda()
+			    (toggle-truncate-lines 1)
+			    (display-line-numbers-mode 1)))
 
 ;; electric-pair
 (electric-pair-mode 1)
