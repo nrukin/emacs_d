@@ -37,6 +37,7 @@
 (add-to-list 'safe-local-variable-values '(compilation-scroll-output . t))
 (add-to-list 'safe-local-variable-values '(compilation-read-command))
 (add-to-list 'safe-local-variable-values '(compile-command . "go run ."))
+(add-to-list 'safe-local-variable-values '(compile-command . "./run.sh"))
 
 ;; json-mode
 (use-package json-mode)
