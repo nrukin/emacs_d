@@ -51,6 +51,12 @@
 	       (file "~/org/contacts.org")
 	       "* %(org-contacts-template-name)\n:PROPERTIES:\n:EMAIL:  %(org-contacts-template-email)\n:END:" :empty-lines 1))
 
+(add-to-list 'org-capture-templates
+	     '("n" "Note" entry
+	       (file "~/org/notes.org")
+	       "* %? %(org-set-property \"CREATED\" \"%U\")" :empty-lines 1))
+
+
 ;; org-habits
 (add-to-list 'org-modules 'org-habit t)
 (setq org-habit-graph-column 56)
