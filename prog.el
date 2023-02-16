@@ -22,6 +22,10 @@
 (use-package go-dlv)
 (use-package gotest)
 
+;; yasnippet
+(use-package yasnippet
+  :config (yas-global-mode 1))
+
 ;; eglot
 (use-package eglot
   :hook (go-mode . eglot-ensure))
