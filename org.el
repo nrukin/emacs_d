@@ -1,3 +1,5 @@
+(require 'org)
+
 ;; org-mode activation
 ;; https://orgmode.org/manual/Activation.html
 (global-set-key (kbd "C-c l") #'org-store-link)
@@ -12,6 +14,24 @@
 (setq org-log-reschedule 'time)
 (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
 (setq org-refile-use-outline-path 'file)
+(setq org-startup-folded 'content)
+(setq org-adapt-indentation nil)
+(setq org-export-with-sub-superscripts '{})
+(add-to-list 'org-structure-template-alist '("g" . "src go"))
+(add-to-list 'org-structure-template-alist '("z" . "src emacs-lisp"))
+(add-to-list 'org-file-apps '("\\.xlsx?\\'" . default))
+(add-to-list 'org-export-backends 'md)
+
+;; priorities
+(setq org-priority-default 67)
+  (setq org-priority-lowest 69)
+  (setq org-priority-highest 65)
+  (setq org-priority-faces
+   '((69 . "thistle1")
+     (68 . "plum1")
+     (67 . "LightPink1")
+     (66 . "salmon1")
+     (65 . "firebrick1")))  
 
 ;; org-mode pathes
 (setq org-directory "~/org/")
