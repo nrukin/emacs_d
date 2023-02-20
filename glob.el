@@ -57,6 +57,8 @@
   :config
   (which-key-mode))
 
+(use-package free-keys)
+
 ;; emojify
 (use-package emojify)
 
