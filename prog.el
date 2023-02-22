@@ -17,7 +17,8 @@
   :init
   (setq gofmt-command "goimports")
   :hook ((before-save . gofmt-before-save)
-	 (go-mode . (lambda () (local-set-key [f5] 'project-compile)))))
+	 (go-mode . (lambda () (local-set-key [f5] 'project-compile)))
+	 (go-mode . hs-minor-mode)))
 
 (use-package go-dlv)
 (use-package gotest)

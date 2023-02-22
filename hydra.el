@@ -37,10 +37,12 @@
   (defhydra hydra-go (:color blue)
     "
     ^
-    _c_ code actions
-    _r_ rename
-    _q_ quit
-    _d_ buffer diagnostics
+    ^Code^                  ^Folding^
+    ^─────^─────────────────^───────^─────────
+    _c_ code actions        _f_ fold
+    _r_ rename              _s_ unfold
+    _q_ quit                _F_ fold all
+    _d_ buffer diagnostics  _S_ unfold all
     _D_ project diagnostics
     _h_ doc
     _H_ doc buffer
@@ -52,4 +54,8 @@
     ("D" flymake-show-project-diagnostics)
     ("h" eldoc)
     ("H" eldoc-doc-buffer)
+    ("f" hs-hide-block :color red)
+    ("s" hs-show-block :color red)
+    ("F" hs-hide-all :color red)
+    ("S" hs-show-all :color red)
     ("q" nil)))
