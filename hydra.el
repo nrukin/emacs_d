@@ -1,7 +1,9 @@
 ;; hydra
 (use-package hydra
   :defer 2
-  :bind ("<f9>" . hydra-clock/body)
+  :bind (("<f9>" . hydra-clock/body)
+	 :map go-mode-map
+	 ("<f8>" . hydra-go/body))
   :config
   (defun org-clock-in-last-with-prefix-arg ()
     (interactive)
@@ -30,4 +32,24 @@
     ("j" org-clock-goto)
     ("o" org-clock-out)
     ("r" org-clock-report)
-    ("l" org-clock-in-last-with-prefix-arg)))
+    ("l" org-clock-in-last-with-prefix-arg))
+
+  (defhydra hydra-go (:color blue)
+    "
+    ^
+    _c_ code actions
+    _r_ rename
+    _q_ quit
+    _d_ buffer diagnostics
+    _D_ project diagnostics
+    _h_ doc
+    _H_ doc buffer
+    ^^
+    "
+    ("c" eglot-code-actions)
+    ("r" eglot-rename)
+    ("d" flymake-show-buffer-diagnostics)
+    ("D" flymake-show-project-diagnostics)
+    ("h" eldoc)
+    ("H" eldoc-doc-buffer)
+    ("q" nil)))
