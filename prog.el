@@ -23,6 +23,8 @@
 (use-package go-dlv)
 (use-package gotest)
 
+(use-package go-playground)
+
 ;; yasnippet
 (use-package yasnippet
   :config (yas-global-mode 1))
@@ -35,7 +37,6 @@
 (use-package eglot
   :hook (go-mode . eglot-ensure)
   :after (yasnippet company))
-
 
 ;; compiling
 (setq compilation-ask-about-save nil)
