@@ -1,7 +1,5 @@
-;; monokai-theme
-(use-package monokai-theme
-  :config
-  (load-theme 'monokai t))
+;; tango theme
+(load-theme 'tango t)
 
 ;; start maximized
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
