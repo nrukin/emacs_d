@@ -19,7 +19,10 @@
 
 ;; local functions
 (defvar run-on-win-p (eq system-type 'windows-nt))
+
 (defvar load-mastodon nil)
+(defvar load-elfeed nil)
+(defvar load-rclone-org nil)
 
 ;; load secret file
 (ignore-errors (load (expand-file-name "secret.el" user-emacs-directory)))
@@ -39,15 +42,22 @@
 (load-modular-config-files '("glob"
 			     "prog"
 			     "org"
-			     "elfeed"
 			     "magit"
 			     "dashboard"
-			     "hydra"
-			     "rclone-org"))
+			     "hydra"))
 
 ;; load mastodon only if need to
 (when load-mastodon
   (ignore-errors (load (expand-file-name "mastodon.el" user-emacs-directory))))
+
+;; load elfeed only if need to
+(when load-elfeed
+  (ignore-errors (load (expand-file-name "elfeed.el" user-emacs-directory))))
+
+load-rclone-org
+;; load elfeed only if need to
+(when load-rclone-org
+  (ignore-errors (load (expand-file-name "rclone-org.el" user-emacs-directory))))
 
 ;; run secret function late configuration
 (when (fboundp 'secret-afterconf)

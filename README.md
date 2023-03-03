@@ -13,6 +13,12 @@ M-x all-the-icons-install-fonts
 ## Сохранение открытой статьи elfeed в org-mode
 `C-c c f` - Сохраняет открытую страницу elfeed в org-файле `inbox.org`
 
+## Локальные настройки для конкретного компьютера
+Устанавливаются в файле `secret.el`, дополнительно есть флаги загрузки модулей:
++ load-mastodon
++ load-elfeed
++ load-rclone-org
+
 ## Примеры файлов
 ### secret.el
 Уникальные приватные настройки: пути до файлов, каталогов, приложений, логины, пароли.
@@ -21,7 +27,10 @@ M-x all-the-icons-install-fonts
 Дополнительно, в конце инициализации вызывается `secret-afterconf`
 
 ```elisp
-;; rclone-org pathes
+;; rclone-org
+
+(setq load-rclone-org t)
+
 (setq rclone-path "rclone")
 (setq rclone-log-path "~/org_sync/logs/org.log")
 (setq rclone-filter-path "~/org_sync/filters/org")
@@ -34,8 +43,12 @@ M-x all-the-icons-install-fonts
 (setq markdown-command "multimarkdown")
 
 ;; mastodon username / instance
+(setq load-mastodon t)
 (setq mastodon-active-user "username")
 (setq mastodon-instance-url "https://example.com")
+
+;; elfeed usage p
+(setq load-elfeed t)
 
 ;; run function at end of file
 (defun secret-afterconf ()

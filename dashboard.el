@@ -16,29 +16,36 @@
 
   ;; Format: "(icon title help action face prefix suffix)"
   (setq dashboard-navigator-buttons
-	`(;; elfeed
-	  ((,(all-the-icons-faicon "rss" :height 1.1 :v-adjust 0.0)
-            "Elfeed"
-            ""
-            (lambda (&rest _) (elfeed))))
-	  ;; mastodon
-	  ((,(all-the-icons-faicon "comments-o" :height 1.1 :v-adjust 0.0)
-            "Mastodon"
-            ""
-            (lambda (&rest _) (mastodon))))
+	`(
 	  ;; org-agenda
 	  ((,(all-the-icons-faicon "calendar" :height 1.1 :v-adjust 0.0)
             "Agenda"
             ""
-            (lambda (&rest _) (org-agenda-list))))
-	  ;; rclone org download, upload
-	  ((,(all-the-icons-faicon "download" :height 1.1 :v-adjust 0.0)
-            "ROD"
-            "rclone-org-download"
-            (lambda (&rest _) (rclone-org-download)))
-	   (,(all-the-icons-faicon "upload" :height 1.1 :v-adjust 0.0)
-            "ROU"
-            "rclone-org-upload"
-            (lambda (&rest _) (rclone-org-upload))))))
+            (lambda (&rest _) (org-agenda-list))))))
+
+  (when load-mastodon
+    (add-to-list 'dashboard-navigator-buttons
+		 `((,(all-the-icons-faicon "comments-o" :height 1.1 :v-adjust 0.0)
+		    "Mastodon"
+		    ""
+		    (lambda (&rest _) (mastodon)))) t))
+
+  (when load-elfeed
+    (add-to-list 'dashboard-navigator-buttons
+		 `((,(all-the-icons-faicon "rss" :height 1.1 :v-adjust 0.0)
+		    "Elfeed"
+		    ""
+		    (lambda (&rest _) (elfeed)))) t))
+
+  (when load-rclone-org
+    (add-to-list 'dashboard-navigator-buttons
+		 `((,(all-the-icons-faicon "download" :height 1.1 :v-adjust 0.0)
+		    "ROD"
+		    "rclone-org-download"
+		    (lambda (&rest _) (rclone-org-download)))
+		   (,(all-the-icons-faicon "upload" :height 1.1 :v-adjust 0.0)
+		    "ROU"
+		    "rclone-org-upload"
+		    (lambda (&rest _) (rclone-org-upload)))) t))
 
   (dashboard-setup-startup-hook))
