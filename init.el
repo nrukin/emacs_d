@@ -96,6 +96,9 @@
      (format-time-string
       "[%Y-%m-%d %a %H:%M]"
       (seconds-to-time (current-time)))))
+  (defun my/org-inbox-file-name()
+    (file-name-concat org-directory  "inbox.org"))
+  (setq org-capture-templates '())
   :bind (("C-c l" . org-store-link)
 	 ("C-c a" . org-agenda)
 	 ("C-c c" . org-capture)
@@ -108,4 +111,11 @@
   (setq org-log-into-drawer t)
   (setq org-log-reschedule 'time)
   (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
-  (setq org-refile-use-outline-path 'file))
+  (setq org-refile-use-outline-path 'file)
+  (setq org-directory "~/org")
+  ;; org-capture-templates
+  (add-to-list 'org-capture-templates
+	       '("i" "Inbox"
+		 entry (file my/org-inbox-file-name)
+		 "* TODO %? %(my/org-set-created)"
+		 :empty-lines 1)))
