@@ -38,37 +38,6 @@
 (setq-default cursor-type 'bar)
 (if (fboundp 'blink-cursor-mode) (blink-cursor-mode 0))
 
-;; org-mode
-(require 'org)
-
-;; активация org-mode
-(global-set-key (kbd "C-c l") #'org-store-link)
-(global-set-key (kbd "C-c a") #'org-agenda)
-(global-set-key (kbd "C-c c") #'org-capture)
-
-;; статусы
-(setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "PLANNED(p)" "LATER(l)" "DELEGATED(g@)" "|" "DONE(d!)" "CANCELLED(c@)")))
-
-;; файлы agenda
-(setq org-agenda-files "~/.emacs.d/.agenda_files")
-
-;; общие настройки
-(setq org-log-done 'time)
-(setq org-log-into-drawer t)
-(setq org-log-reschedule 'time)
-(setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
-(setq org-refile-use-outline-path 'file)
-
-;; функция установки свойства created в текущее время
-(defun my/org-set-created()
-  (interactive)
-  (org-set-property
-   "CREATED"
-   (format-time-string
-    "[%Y-%m-%d %a %H:%M]"
-    (seconds-to-time (current-time)))))
-(define-key org-mode-map (kbd "<f6>") 'my/org-set-created)
-
 ;; magit
 (use-package magit
   :init
@@ -90,3 +59,26 @@
   (defun elfeed-search-format-date (date)
     (format-time-string "%Y-%m-%d %H:%M" (seconds-to-time date)))
   (setq elfeed-search-title-max-width 100))
+
+(use-package org
+  :preface
+  (defun my/org-set-created()
+    (interactive)
+    (org-set-property
+     "CREATED"
+     (format-time-string
+      "[%Y-%m-%d %a %H:%M]"
+      (seconds-to-time (current-time)))))
+  :bind (("C-c l" . org-store-link)
+	 ("C-c a" . org-agenda)
+	 ("C-c c" . org-capture)
+	 :map org-mode-map
+	 ("<f6>" . my/org-set-created))
+  :config
+  (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "PLANNED(p)" "LATER(l)" "DELEGATED(g@)" "|" "DONE(d!)" "CANCELLED(c@)")))
+  (setq org-agenda-files "~/.emacs.d/.agenda_files")
+  (setq org-log-done 'time)
+  (setq org-log-into-drawer t)
+  (setq org-log-reschedule 'time)
+  (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+  (setq org-refile-use-outline-path 'file))
