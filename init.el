@@ -70,6 +70,11 @@
   :init
   (setq magit-commit-show-diff nil))
 
+;; Название команд по сочетаниям
+(use-package which-key
+  :config
+  (which-key-mode))
+
 ;; elfeed
 (setq me/load-elfeed-p nil)
 (let ((elfeed-cnf-file (expand-file-name ".elfeed.el" user-emacs-directory)))
