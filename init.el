@@ -10,6 +10,9 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+;; определяем запуск под windows
+(defvar run-on-win-p (eq system-type 'windows-nt))
+
 ;; общие настройки
 (setq default-input-method "russian-computer")
 
@@ -70,3 +73,20 @@
 (use-package magit
   :init
   (setq magit-commit-show-diff nil))
+
+;; elfeed
+(setq me/load-elfeed-p nil)
+(let ((elfeed-cnf-file (expand-file-name ".elfeed.el" user-emacs-directory)))
+  (when (file-exists-p elfeed-cnf-file)
+    (load-file elfeed-cnf-file)
+    (setq me/load-elfeed-p t)))
+
+(use-package elfeed
+  :if me/load-elfeed-p
+  :bind ("C-x w" . elfeed)
+  :config
+  (when run-on-win-p
+    (setq elfeed-use-curl nil))
+  (defun elfeed-search-format-date (date)
+    (format-time-string "%Y-%m-%d %H:%M" (seconds-to-time date)))
+  (setq elfeed-search-title-max-width 100))
