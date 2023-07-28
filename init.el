@@ -13,6 +13,11 @@
 ;; общие настройки
 (setq default-input-method "russian-computer")
 
+;; оформление
+(use-package dracula-theme
+  :config
+  (load-theme 'dracula t))
+
 ;; org-mode
 (require 'org)
 
