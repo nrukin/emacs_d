@@ -24,6 +24,11 @@
   :config
   (load-theme 'dracula t))
 
+;; скрыть меню, скролбары и тулбары
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+
 ;; Шрифт
 (add-to-list 'default-frame-alist
              '(font . "Fira Code-10"))
