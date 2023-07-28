@@ -1,0 +1,6 @@
+/.elfeed.el
+/.agenda_files
+*~
+/elpa/
+/server/
+/transient/
