@@ -13,10 +13,28 @@
 ;; общие настройки
 (setq default-input-method "russian-computer")
 
+;; открывать scratch при запуске
+(setq initial-buffer-choice t)
+
 ;; оформление
 (use-package dracula-theme
   :config
   (load-theme 'dracula t))
+
+;; Шрифт
+(add-to-list 'default-frame-alist
+             '(font . "Fira Code-10"))
+
+;; Отключить звуки
+(setq ring-bell-function 'ignore)
+
+;; Скрыть диалоги
+(setq use-dialog-box nil)
+
+;; Настройка курсора
+(setq-default cursor-type 'bar)
+(if (fboundp 'blink-cursor-mode) (blink-cursor-mode 0))
+
 
 ;; org-mode
 (require 'org)
