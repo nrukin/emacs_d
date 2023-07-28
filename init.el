@@ -39,6 +39,17 @@
 (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
 (setq org-refile-use-outline-path 'file)
 
+;; функция установки свойства created в текущее время
+(defun my/org-set-created()
+  (interactive)
+  (org-set-property
+   "CREATED"
+   (format-time-string
+    "[%Y-%m-%d %a %H:%M]"
+    (seconds-to-time (current-time)))))
+
+(define-key org-mode-map (kbd "<f6>") 'my/org-set-created)
+
 (use-package magit
   :init
   (setq magit-commit-show-diff nil))
