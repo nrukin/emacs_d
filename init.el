@@ -35,7 +35,6 @@
 (setq-default cursor-type 'bar)
 (if (fboundp 'blink-cursor-mode) (blink-cursor-mode 0))
 
-
 ;; org-mode
 (require 'org)
 
@@ -65,9 +64,9 @@
    (format-time-string
     "[%Y-%m-%d %a %H:%M]"
     (seconds-to-time (current-time)))))
-
 (define-key org-mode-map (kbd "<f6>") 'my/org-set-created)
 
+;; magit
 (use-package magit
   :init
   (setq magit-commit-show-diff nil))
