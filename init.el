@@ -111,13 +111,13 @@
 	 ("<f6>" . my/org-set-created))
   :config
   (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "PLANNED(p)" "LATER(l)" "DELEGATED(g@)" "|" "DONE(d!)" "CANCELLED(c@)")))
-  (setq org-agenda-files "~/.emacs.d/.agenda_files")
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
   (setq org-log-reschedule 'time)
   (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
   (setq org-refile-use-outline-path 'file)
   (setq org-directory "~/org")
+  (setq org-agenda-files org-directory)
   ;; org-capture-templates
   (add-to-list 'org-capture-templates
 	       '("i" "Inbox"
