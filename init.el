@@ -43,6 +43,28 @@
 (setq-default cursor-type 'bar)
 (if (fboundp 'blink-cursor-mode) (blink-cursor-mode 0))
 
+;; настройка календаря
+(setq calendar-week-start-day 1)
+(setq calendar-day-name-array
+      ["Воскресенье" "Понедельник" "Вторник"
+       "Среда" "Четверг" "Пятница" "Суббота"])
+(setq calendar-day-header-array
+      ["Вс" "Пн" "Вт"
+       "Ср" "Чт" "Пт" "Сб"])
+(setq calendar-day-abbrev-array
+      ["Вск" "Пнд" "Втр"
+       "Сре" "Чтв" "Птн" "Суб"])
+(setq calendar-month-name-array
+      ["Январь" "Февраль" "Март"
+       "Апрель" "Май" "Июнь"
+       "Июль" "Август" "Сентябрь"
+       "Октябрь" "Ноябрь" "Декабрь"])
+(setq calendar-month-abbrev-array
+      ["Янв" "Фев" "Мар"
+       "Апр" "Май" "Июн"
+       "Июл" "Авг" "Сен"
+       "Окт" "Ноя" "Дек"])
+
 ;; magit
 (use-package magit
   :init
