@@ -13,6 +13,12 @@
 ;; определяем запуск под windows
 (defvar run-on-win-p (eq system-type 'windows-nt))
 
+;; исправление проблем с кодировкой в windows
+(defun windows-shell-encoding-config ()
+  (defadvice shell (after my-shell-advice)
+    (set-process-coding-system (get-buffer-process (current-buffer)) 'cp1251 'cp1251))
+  (ad-activate 'shell))
+
 ;; общие настройки
 (setq default-input-method "russian-computer")
 
