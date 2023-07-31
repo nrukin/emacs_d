@@ -139,6 +139,16 @@
 	       '("i" "Inbox"
 		 entry (file my/org-inbox-file-name)
 		 "* TODO %? %(my/org-set-created)"
+		 :empty-lines 1))
+  (add-to-list 'org-capture-templates
+	       '("a" "Timer"
+		 entry (file my/org-inbox-file-name)
+		 "* TODO %? %(my/org-set-created)"
+		 :empty-lines 1 :clock-in t :clock-keep t))
+  (add-to-list 'org-capture-templates
+	       '("e" "Event"
+		 entry (file my/org-inbox-file-name)
+		 "* PLANNED %?%(my/org-set-created)\nSCHEDULED: %^T"
 		 :empty-lines 1)))
 
 ;; Красивые иконки для хедеров
