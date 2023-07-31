@@ -1,0 +1,23 @@
+* DONE Настроить hydra для замеров времени работы
+CLOSED: [2023-07-31 Пн 18:30]
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2023-07-31 Пн 18:30]
+:END:
+
+* DONE Настроить сохранение кастомных настроек в custom.el
+CLOSED: [2023-07-31 Пн 10:50]
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2023-07-31 Пн 10:50]
+CLOCK: [2023-07-31 Пн 10:48]--[2023-07-31 Пн 10:50] =>  0:02
+:END:
+* Пример файла =.secret.el=
+#+begin_src emacs-lisp
+  (setq rclone-path "rclone")
+  (setq rclone-log-path "~/.org-sync/sync.log")
+  (setq rclone-filter-path "~/.org-sync/filter.txt")
+  (setq rclone-local-path "~/org")
+  (setq rclone-remote-path "db:org2")
+  (setq rclone-remote-backup "db:backup/org/")
+  (setq rclone-local-backup "~/.org-sync/backup/")
+  (global-set-key (kbd "C-c q") 'save-sync-and-quit)
+#+end_src
