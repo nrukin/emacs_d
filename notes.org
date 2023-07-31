@@ -1,15 +1,3 @@
-* DONE Настроить hydra для замеров времени работы
-CLOSED: [2023-07-31 Пн 18:30]
-:LOGBOOK:
-- State "DONE"       from "TODO"       [2023-07-31 Пн 18:30]
-:END:
-
-* DONE Настроить сохранение кастомных настроек в custom.el
-CLOSED: [2023-07-31 Пн 10:50]
-:LOGBOOK:
-- State "DONE"       from "TODO"       [2023-07-31 Пн 10:50]
-CLOCK: [2023-07-31 Пн 10:48]--[2023-07-31 Пн 10:50] =>  0:02
-:END:
 * Пример файла =.secret.el=
 #+begin_src emacs-lisp
   (setq rclone-path "rclone")
@@ -21,3 +9,20 @@ CLOCK: [2023-07-31 Пн 10:48]--[2023-07-31 Пн 10:50] =>  0:02
   (setq rclone-local-backup "~/.org-sync/backup/")
   (global-set-key (kbd "C-c q") 'save-sync-and-quit)
 #+end_src
+* Настроить [2/6]
+** DONE Настроить hydra для замеров времени работы
+CLOSED: [2023-07-31 Пн 18:30]
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2023-07-31 Пн 18:30]
+:END:
+
+** DONE Настроить сохранение кастомных настроек в custom.el
+CLOSED: [2023-07-31 Пн 10:50]
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2023-07-31 Пн 10:50]
+CLOCK: [2023-07-31 Пн 10:48]--[2023-07-31 Пн 10:50] =>  0:02
+:END:
+** TODO Добавить шаблоны для событий "Сегодня" и "Завтра"
+** TODO Добавить org-habits
+** TODO Добавить go-mode и всё что нужно для программирования на Go
+** TODO Не создавать bookmark при org-refile

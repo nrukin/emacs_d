@@ -129,6 +129,7 @@
   (setq org-hide-leading-stars t)
   (setq org-startup-folded 'content)
   (setq org-adapt-indentation nil)
+  (setq org-bookmark-names-plist nil)
   (setq org-export-with-sub-superscripts '{})
   (add-to-list 'org-structure-template-alist '("g" . "src go") t)
   (add-to-list 'org-structure-template-alist '("z" . "src emacs-lisp") t)
