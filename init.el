@@ -208,9 +208,9 @@
     ("r" org-clock-report)
     ("l" my/org-clock-in-last-with-prefix-arg)))
 
-  ;; отдельный файл для настроек, выполняемых через меню настроек
-  (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-  (ignore-errors (load custom-file))
+;; отдельный файл для настроек, выполняемых через меню настроек
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(ignore-errors (load custom-file))
 
 ;; Синхронизация ~/org через rclone
 
@@ -225,38 +225,38 @@
 (defun rclone-org-upload ()
   "upload org-files to remote via rclone"
   (interactive)
-    (shell-command (format "%s sync --filter-from %s --log-file %s --log-level INFO --backup-dir %s %s %s"
-	rclone-path
-	rclone-filter-path
-	rclone-log-path
-	(concat rclone-remote-backup "remote\\" (format-time-string "%Y%m%d_%H%M%S" (current-time)))
-	rclone-local-path
-	rclone-remote-path))
-    (message "Upload complete"))
+  (shell-command (format "%s sync --filter-from %s --log-file %s --log-level INFO --backup-dir %s %s %s"
+			 rclone-path
+			 rclone-filter-path
+			 rclone-log-path
+			 (concat rclone-remote-backup "remote\\" (format-time-string "%Y%m%d_%H%M%S" (current-time)))
+			 rclone-local-path
+			 rclone-remote-path))
+  (message "Upload complete"))
 
 (defun rclone-org-download ()
   "download org-files from remote via rclone"
   (interactive)
-    (shell-command (format "%s sync --filter-from %s --log-file %s --log-level INFO --backup-dir %s %s %s"
-	rclone-path
-	rclone-filter-path
-	rclone-log-path
-	(concat rclone-local-backup (format-time-string "%Y%m%d_%H%M%S" (current-time)))
-	rclone-remote-path
-	rclone-local-path))
-    (message "Download complete"))
+  (shell-command (format "%s sync --filter-from %s --log-file %s --log-level INFO --backup-dir %s %s %s"
+			 rclone-path
+			 rclone-filter-path
+			 rclone-log-path
+			 (concat rclone-local-backup (format-time-string "%Y%m%d_%H%M%S" (current-time)))
+			 rclone-remote-path
+			 rclone-local-path))
+  (message "Download complete"))
 
 (defun rclone-backup-upload ()
   "upload backup files to cloud storage"
   (interactive)
-    (elfeed-db-save)
-    (shell-command (format "%s move --log-file %s --log-level INFO --delete-empty-src-dirs %s %s"
-	rclone-path
-	rclone-log-path
-	rclone-local-backup
-	(concat rclone-remote-backup (system-name) "\\")
-	))
-    (message "Backup move complete"))
+  (elfeed-db-save)
+  (shell-command (format "%s move --log-file %s --log-level INFO --delete-empty-src-dirs %s %s"
+			 rclone-path
+			 rclone-log-path
+			 rclone-local-backup
+			 (concat rclone-remote-backup (system-name) "\\")
+			 ))
+  (message "Backup move complete"))
 
 (defun save-sync-and-quit ()
   (interactive)
