@@ -139,6 +139,41 @@
   :requires org
   :hook (org-mode . (lambda () (org-superstar-mode 1))))
 
+;; hydra
+(use-package hydra
+  :defer 2
+  :bind (("<f9>" . hydra-clock/body))
+  :preface
+  (defun my/org-clock-in-last-with-prefix-arg ()
+    (interactive)
+    (setq current-prefix-arg '(4)) ; C-u
+    (call-interactively 'org-clock-in-last))
+  :config
+  (defhydra hydra-clock (:color blue)
+    "
+    ^
+    ^Clock^             ^Do^
+    ^─────^─────────────^──^─────────
+    _q_ quit            _c_ cancel
+    ^^                  _d_ display
+    ^^                  _e_ effort
+    ^^                  _i_ in
+    ^^                  _j_ jump
+    ^^                  _o_ out
+    ^^                  _r_ report
+    ^^                  _l_ continue last
+    ^^                  ^^
+    "
+    ("q" nil)
+    ("c" org-clock-cancel :color pink)
+    ("d" org-clock-display)
+    ("e" org-clock-modify-effort-estimate)
+    ("i" org-clock-in)
+    ("j" org-clock-goto)
+    ("o" org-clock-out)
+    ("r" org-clock-report)
+    ("l" my/org-clock-in-last-with-prefix-arg)))
+
   ;; отдельный файл для настроек, выполняемых через меню настроек
   (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
   (ignore-errors (load custom-file))
