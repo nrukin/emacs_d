@@ -19,6 +19,12 @@
     (set-process-coding-system (get-buffer-process (current-buffer)) 'cp1251 'cp1251))
   (ad-activate 'shell))
 
+(defun me/load-config-file (file)
+  "Загружает файл по имени"
+  (let ((config-file (expand-file-name (format "%s.el" file) user-emacs-directory)))
+    (when (file-exists-p config-file)
+      (load-file config-file))))
+
 ;; общие настройки
 (setq default-input-method "russian-computer")
 
@@ -208,9 +214,6 @@
     ("r" org-clock-report)
     ("l" my/org-clock-in-last-with-prefix-arg)))
 
-;; отдельный файл для настроек, выполняемых через меню настроек
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(ignore-errors (load custom-file))
 
 ;; Синхронизация ~/org через rclone
 
@@ -266,3 +269,9 @@
     (save-some-buffers t)
     (rclone-org-upload)
     (kill-emacs)))
+
+;; отдельный файл для настроек, выполняемых через меню настроек
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(ignore-errors (load custom-file))
+
+(me/load-config-file "secret")
