@@ -139,6 +139,6 @@
   :requires org
   :hook (org-mode . (lambda () (org-superstar-mode 1))))
 
-;; отдельный файл для настроек, выполняемых через меню настроек
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(ignore-errors (load custom-file))
+  ;; отдельный файл для настроек, выполняемых через меню настроек
+  (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+  (ignore-errors (load custom-file))
