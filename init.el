@@ -141,6 +141,14 @@
   :after (org)
   :hook (org-mode . (lambda () (org-superstar-mode 1))))
 
+;; использовать id для внутренних ссылок
+(use-package org-id
+  :requires org
+  :after (org)
+  :ensure nil
+  :init
+  (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id))
+
 ;; hydra
 (use-package hydra
   :defer 2
