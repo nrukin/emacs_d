@@ -135,8 +135,10 @@
 		 "* TODO %? %(my/org-set-created)"
 		 :empty-lines 1)))
 
+;; Красивые иконки для хедеров
 (use-package org-superstar
   :requires org
+  :after (org)
   :hook (org-mode . (lambda () (org-superstar-mode 1))))
 
 ;; hydra
