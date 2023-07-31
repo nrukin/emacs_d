@@ -149,6 +149,14 @@
   :init
   (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id))
 
+;; делаем HTTP-запросы прямо в org
+(use-package verb
+  :requires org
+  :after (org)
+  :config
+  (with-eval-after-load 'org
+    (define-key org-mode-map (kbd "C-c C-r") verb-command-map)))
+
 ;; hydra
 (use-package hydra
   :defer 2
