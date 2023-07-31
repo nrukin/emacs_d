@@ -274,4 +274,4 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (ignore-errors (load custom-file))
 
-(me/load-config-file "secret")
+(me/load-config-file ".secret")
