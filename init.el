@@ -77,6 +77,33 @@
        "Июл" "Авг" "Сен"
        "Окт" "Ноя" "Дек"])
 
+(use-package ibuffer
+  :bind ([remap list-buffers] . ibuffer))
+(fset 'yes-or-no-p 'y-or-n-p)
+(use-package nyan-mode
+  :config
+  (nyan-mode t))
+(use-package ace-window
+  :bind ([remap other-window] . ace-window))
+(use-package which-key
+  :config
+  (which-key-mode))
+(use-package free-keys)
+(use-package discover)
+
+(let ((backup-dir (format "%sbackups" (file-name-directory user-init-file))))
+  (add-to-list 'backup-directory-alist `("." . ,backup-dir)))
+(setq version-control t)
+(setq delete-old-versions t)
+(setq kept-new-versions 4)
+(setq kept-old-versions 4)
+(global-auto-revert-mode t)
+(setq create-lockfiles nil)
+
+(use-package auto-package-update
+  :config
+  (auto-package-update-maybe))
+
 ;; magit
 (use-package magit
   :init
@@ -214,6 +241,20 @@
     ("r" org-clock-report)
     ("l" my/org-clock-in-last-with-prefix-arg)))
 
+(add-hook 'prog-mode-hook (lambda()
+			    (toggle-truncate-lines 1)
+			    (display-line-numbers-mode 1)
+			    (hs-minor-mode)))
+(electric-pair-mode 1)
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+(use-package company
+  :hook (prog-mode . company-mode))
+
+(use-package markdown-mode
+  :mode ("README\\.md\\'" . gfm-mode))
+
+(use-package json-mode)
 
 ;; Синхронизация ~/org через rclone
 
@@ -274,4 +315,4 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (ignore-errors (load custom-file))
 
-(me/load-config-file "secret")
+(me/load-config-file ".secret")
