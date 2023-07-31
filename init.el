@@ -116,8 +116,8 @@
   (setq org-log-reschedule 'time)
   (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
   (setq org-refile-use-outline-path 'file)
-  (setq org-directory "~/org")
-  (setq org-agenda-files org-directory)
+  (setq org-directory "~/org/")
+  (setq org-agenda-files (list org-directory))
   ;; org-capture-templates
   (add-to-list 'org-capture-templates
 	       '("i" "Inbox"
