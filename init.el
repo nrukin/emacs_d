@@ -114,6 +114,16 @@
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
   (setq org-log-reschedule 'time)
+  (setq org-hide-leading-stars t)
+  (setq org-startup-folded 'content)
+  (setq org-adapt-indentation nil)
+  (setq org-export-with-sub-superscripts '{})
+  (add-to-list 'org-structure-template-alist '("g" . "src go") t)
+  (add-to-list 'org-structure-template-alist '("z" . "src emacs-lisp") t)
+  (add-to-list 'org-file-apps '("\\.xlsx?\\'" . default))
+  (add-to-list 'org-file-apps '("\\.ods\\'" . default))
+  (add-to-list 'org-file-apps '("\\.org_archive\\'" . emacs))
+  (add-to-list 'org-export-backends 'md)
   (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
   (setq org-refile-use-outline-path 'file)
   (setq org-directory "~/org/")
@@ -124,3 +134,7 @@
 		 entry (file my/org-inbox-file-name)
 		 "* TODO %? %(my/org-set-created)"
 		 :empty-lines 1)))
+
+(use-package org-superstar
+  :requires org
+  :hook (org-mode . (lambda () (org-superstar-mode 1))))
