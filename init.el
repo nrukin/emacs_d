@@ -116,10 +116,9 @@
 
 ;; elfeed
 (setq me/load-elfeed-p nil)
-(let ((elfeed-cnf-file (expand-file-name ".elfeed.el" user-emacs-directory)))
-  (when (file-exists-p elfeed-cnf-file)
-    (load-file elfeed-cnf-file)
-    (setq me/load-elfeed-p t)))
+(setq me/elfeed-cnf-file (expand-file-name ".elfeed.el" user-emacs-directory))
+(when (file-exists-p me/elfeed-cnf-file)
+  (setq me/load-elfeed-p t))
 
 (use-package elfeed
   :if me/load-elfeed-p
@@ -129,7 +128,8 @@
     (setq elfeed-use-curl nil))
   (defun elfeed-search-format-date (date)
     (format-time-string "%Y-%m-%d %H:%M" (seconds-to-time date)))
-  (setq elfeed-search-title-max-width 100))
+  (setq elfeed-search-title-max-width 100)
+  (load-file me/elfeed-cnf-file))
 
 (use-package org
   :preface
