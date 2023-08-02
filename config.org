@@ -1,65 +1,89 @@
 #+TITLE: Config
 
-* init.el
+* Пакеты
+** package
 #+begin_src emacs-lisp
-  ;; файл создан 28.07.2023
-
-  ;; пакеты
   (require 'package)
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
   (package-initialize)
+#+end_src
+** use-package
+#+begin_src emacs-lisp
   (unless (package-installed-p 'use-package)
     (package-refresh-contents)
     (package-install 'use-package))
   (require 'use-package)
   (setq use-package-always-ensure t)
-
-  ;; определяем запуск под windows
+#+end_src
+* Глобальные флаги, общие функции
+** Признак запуска в Windows
+#+begin_src emacs-lisp
   (defvar run-on-win-p (eq system-type 'windows-nt))
-
-  ;; исправление проблем с кодировкой в windows
+#+end_src
+** Функция исправления ошибки
+#+begin_src emacs-lisp
   (defun windows-shell-encoding-config ()
     (defadvice shell (after my-shell-advice)
       (set-process-coding-system (get-buffer-process (current-buffer)) 'cp1251 'cp1251))
     (ad-activate 'shell))
-
+#+end_src
+** Функция загрузки локального конфиг файла el
+#+begin_src emacs-lisp
   (defun me/load-config-file (file)
     "Загружает файл по имени"
     (let ((config-file (expand-file-name (format "%s.el" file) user-emacs-directory)))
       (when (file-exists-p config-file)
 	(load-file config-file))))
-
-  ;; общие настройки
-  (setq default-input-method "russian-computer")
-
-  ;; открывать scratch при запуске
-  (setq initial-buffer-choice t)
-
-  ;; оформление
+#+end_src
+* Оформление
+** Тема
+#+begin_src emacs-lisp
   (use-package dracula-theme
     :config
     (load-theme 'dracula t))
-
-  ;; скрыть меню, скролбары и тулбары
+#+end_src
+** Скрыть меню, скролбар и тулбар
+#+begin_src emacs-lisp
   (menu-bar-mode -1)
   (scroll-bar-mode -1)
-  (tool-bar-mode -1)
-
-  ;; Шрифт
+  (tool-bar-mode -1)  
+#+end_src
+** Настройка шрифта
+#+begin_src emacs-lisp
   (add-to-list 'default-frame-alist
 	       '(font . "Fira Code-10"))
-
-  ;; Отключить звуки
+#+end_src
+** Отключить звуки
+#+begin_src emacs-lisp
   (setq ring-bell-function 'ignore)
-
-  ;; Скрыть диалоги
+#+end_src
+** Отключить диалоги
+#+begin_src emacs-lisp
   (setq use-dialog-box nil)
-
-  ;; Настройка курсора
+#+end_src
+** Упростить вопросы
+#+begin_src emacs-lisp
+  (fset 'yes-or-no-p 'y-or-n-p)
+#+end_src
+** Настройка курсора
+#+begin_src emacs-lisp
   (setq-default cursor-type 'bar)
   (if (fboundp 'blink-cursor-mode) (blink-cursor-mode 0))
-
-  ;; настройка календаря
+#+end_src
+** nya
+#+begin_src emacs-lisp
+  (use-package nyan-mode
+    :config
+    (nyan-mode t))
+#+end_src
+* Общие настройки
+** Локализация
+*** Язык ввода
+#+begin_src emacs-lisp
+  (setq default-input-method "russian-computer")
+#+end_src
+*** Календарь
+#+begin_src emacs-lisp
   (setq calendar-week-start-day 1)
   (setq calendar-day-name-array
 	["Воскресенье" "Понедельник" "Вторник"
@@ -80,21 +104,13 @@
 	 "Апр" "Май" "Июн"
 	 "Июл" "Авг" "Сен"
 	 "Окт" "Ноя" "Дек"])
-
-  (use-package ibuffer
-    :bind ([remap list-buffers] . ibuffer))
-  (fset 'yes-or-no-p 'y-or-n-p)
-  (use-package nyan-mode
-    :config
-    (nyan-mode t))
-  (use-package ace-window
-    :bind ([remap other-window] . ace-window))
-  (use-package which-key
-    :config
-    (which-key-mode))
-  (use-package free-keys)
-  (use-package discover)
-
+#+end_src
+** Основной буфер при запуске
+#+begin_src emacs-lisp
+  (setq initial-buffer-choice t)
+#+end_src
+** Файлы бэкапов, блокировок
+#+begin_src emacs-lisp
   (let ((backup-dir (format "%sbackups" (file-name-directory user-init-file))))
     (add-to-list 'backup-directory-alist `("." . ,backup-dir)))
   (setq version-control t)
@@ -103,22 +119,39 @@
   (setq kept-old-versions 4)
   (global-auto-revert-mode t)
   (setq create-lockfiles nil)
-
-  (use-package auto-package-update
-    :config
-    (auto-package-update-maybe))
-
-  ;; magit
-  (use-package magit
-    :init
-    (setq magit-commit-show-diff nil))
-
-  ;; Название команд по сочетаниям
+#+end_src
+** ibuffer
+#+begin_src emacs-lisp
+  (use-package ibuffer
+    :bind ([remap list-buffers] . ibuffer))
+#+end_src
+** ace-window
+#+begin_src emacs-lisp
+  (use-package ace-window
+    :bind ([remap other-window] . ace-window))
+#+end_src
+** which-key
+#+begin_src emacs-lisp
   (use-package which-key
     :config
     (which-key-mode))
-
-  ;; elfeed
+#+end_src
+** free-keys
+#+begin_src emacs-lisp
+  (use-package free-keys)
+#+end_src
+** discover
+#+begin_src 
+  (use-package discover)
+#+end_src
+** auto-package-update
+#+begin_src emacs-lisp
+  (use-package auto-package-update
+    :config
+    (auto-package-update-maybe))
+#+end_src
+* Elfeed
+#+begin_src emacs-lisp
   (setq me/load-elfeed-p nil)
   (setq me/elfeed-cnf-file (expand-file-name ".elfeed.el" user-emacs-directory))
   (when (file-exists-p me/elfeed-cnf-file)
@@ -134,7 +167,16 @@
       (format-time-string "%Y-%m-%d %H:%M" (seconds-to-time date)))
     (setq elfeed-search-title-max-width 100)
     (load-file me/elfeed-cnf-file))
-
+#+end_src
+* Magit
+#+begin_src emacs-lisp
+  (use-package magit
+    :init
+    (setq magit-commit-show-diff nil))
+#+end_src
+* Org
+** Основная настройка
+#+begin_src emacs-lisp
   (use-package org
     :preface
     (defun my/org-set-created()
@@ -189,80 +231,34 @@
 		   "* PLANNED %?%(my/org-set-created)\nSCHEDULED: %^T"
 		   :empty-lines 1)))
 
-  ;; Красивые иконки для хедеров
+#+end_src
+** org-superstar
+#+begin_src emacs-lisp
   (use-package org-superstar
     :requires org
     :after (org)
     :hook (org-mode . (lambda () (org-superstar-mode 1))))
-
-  ;; использовать id для внутренних ссылок
+#+end_src
+** org-id
+#+begin_src emacs-lisp
   (use-package org-id
     :requires org
     :after (org)
     :ensure nil
     :init
     (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id))
-
-  ;; делаем HTTP-запросы прямо в org
+#+end_src
+** verb
+#+begin_src emacs-lisp
   (use-package verb
     :requires org
     :after (org)
     :config
     (with-eval-after-load 'org
       (define-key org-mode-map (kbd "C-c C-r") verb-command-map)))
-
-  ;; hydra
-  (use-package hydra
-    :defer 2
-    :bind (("<f9>" . hydra-clock/body))
-    :preface
-    (defun my/org-clock-in-last-with-prefix-arg ()
-      (interactive)
-      (setq current-prefix-arg '(4)) ; C-u
-      (call-interactively 'org-clock-in-last))
-    :config
-    (defhydra hydra-clock (:color blue)
-      "
-      ^
-      ^Clock^             ^Do^
-      ^─────^─────────────^──^─────────
-      _q_ quit            _c_ cancel
-      ^^                  _d_ display
-      ^^                  _e_ effort
-      ^^                  _i_ in
-      ^^                  _j_ jump
-      ^^                  _o_ out
-      ^^                  _r_ report
-      ^^                  _l_ continue last
-      ^^                  ^^
-      "
-      ("q" nil)
-      ("c" org-clock-cancel :color pink)
-      ("d" org-clock-display)
-      ("e" org-clock-modify-effort-estimate)
-      ("i" org-clock-in)
-      ("j" org-clock-goto)
-      ("o" org-clock-out)
-      ("r" org-clock-report)
-      ("l" my/org-clock-in-last-with-prefix-arg)))
-
-  (add-hook 'prog-mode-hook (lambda()
-			      (toggle-truncate-lines 1)
-			      (display-line-numbers-mode 1)
-			      (hs-minor-mode)))
-  (electric-pair-mode 1)
-  (use-package rainbow-delimiters
-    :hook (prog-mode . rainbow-delimiters-mode))
-  (use-package company
-    :hook (prog-mode . company-mode))
-
-  (use-package markdown-mode
-    :mode ("README\\.md\\'" . gfm-mode))
-
-  (use-package json-mode)
-
-  ;; Синхронизация ~/org через rclone
-
+#+end_src
+* Rclone-org-sync
+#+begin_src emacs-lisp
   (defvar rclone-path "" "path to rclone binary")
   (defvar rclone-log-path "" "path to sync log file")
   (defvar rclone-filter-path "" "path to rclone filter path")
@@ -315,11 +311,78 @@
       (save-some-buffers t)
       (rclone-org-upload)
       (kill-emacs)))
-
-  ;; отдельный файл для настроек, выполняемых через меню настроек
+#+end_src
+* Hydra
+#+begin_src emacs-lisp
+  (use-package hydra
+    :defer 2
+    :bind (("<f9>" . hydra-clock/body))
+    :preface
+    (defun my/org-clock-in-last-with-prefix-arg ()
+      (interactive)
+      (setq current-prefix-arg '(4)) ; C-u
+      (call-interactively 'org-clock-in-last))
+    :config
+    (defhydra hydra-clock (:color blue)
+      "
+      ^
+      ^Clock^             ^Do^
+      ^─────^─────────────^──^─────────
+      _q_ quit            _c_ cancel
+      ^^                  _d_ display
+      ^^                  _e_ effort
+      ^^                  _i_ in
+      ^^                  _j_ jump
+      ^^                  _o_ out
+      ^^                  _r_ report
+      ^^                  _l_ continue last
+      ^^                  ^^
+      "
+      ("q" nil)
+      ("c" org-clock-cancel :color pink)
+      ("d" org-clock-display)
+      ("e" org-clock-modify-effort-estimate)
+      ("i" org-clock-in)
+      ("j" org-clock-goto)
+      ("o" org-clock-out)
+      ("r" org-clock-report)
+      ("l" my/org-clock-in-last-with-prefix-arg)))
+#+end_src
+* Программирование
+** Общие
+#+begin_src emacs-lisp
+  (add-hook 'prog-mode-hook (lambda()
+			      (toggle-truncate-lines 1)
+			      (display-line-numbers-mode 1)
+			      (hs-minor-mode)))
+  (electric-pair-mode 1)
+#+end_src
+** rainbow-delimeters
+#+begin_src emacs-lisp
+  (use-package rainbow-delimiters
+    :hook (prog-mode . rainbow-delimiters-mode))
+#+end_src
+** company
+#+begin_src emacs-lisp
+  (use-package company
+    :hook (prog-mode . company-mode))
+#+end_src
+** markdown
+#+begin_src emacs-lisp
+  (use-package markdown-mode
+    :mode ("README\\.md\\'" . gfm-mode))
+#+end_src
+** json
+#+begin_src emacs-lisp
+  (use-package json-mode)
+#+end_src
+* custom.el
+Отдельный файл для настроек
+#+begin_src emacs-lisp
   (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
   (ignore-errors (load custom-file))
-
+#+end_src
+* secret.el
+#+begin_src emacs-lisp
   (me/load-config-file ".secret")
-  
 #+end_src
