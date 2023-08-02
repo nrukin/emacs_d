@@ -32,6 +32,9 @@
 *** Elfeed
 #+begin_src emacs-lisp
   (defvar me/load-elfeed-p nil)
+  (defvar me/elfeed-cnf-file (expand-file-name ".elfeed.el" user-emacs-directory))
+  (when (file-exists-p me/elfeed-cnf-file)
+    (setq me/load-elfeed-p t))
 #+end_src
 ** Функция исправления ошибки
 #+begin_src emacs-lisp
@@ -47,6 +50,10 @@
     (let ((config-file (expand-file-name (format "%s.el" file) user-emacs-directory)))
       (when (file-exists-p config-file)
 	(load-file config-file))))
+#+end_src
+* secret-init.el
+#+begin_src emacs-lisp
+  (me/load-config-file ".secret-init")
 #+end_src
 * Оформление
 ** Тема
@@ -174,10 +181,6 @@
 #+end_src
 * Elfeed
 #+begin_src emacs-lisp
-  (setq me/elfeed-cnf-file (expand-file-name ".elfeed.el" user-emacs-directory))
-  (when (file-exists-p me/elfeed-cnf-file)
-    (setq me/load-elfeed-p t))
-
   (use-package elfeed
     :if me/load-elfeed-p
     :bind ("C-x w" . elfeed)
@@ -187,7 +190,8 @@
     (defun elfeed-search-format-date (date)
       (format-time-string "%Y-%m-%d %H:%M" (seconds-to-time date)))
     (setq elfeed-search-title-max-width 100)
-    (load-file me/elfeed-cnf-file))
+    (let (( cnf-file (expand-file-name ".elfeed.el" user-emacs-directory)))
+      (load-file cnf-file))
 #+end_src
 * Magit
 #+begin_src emacs-lisp
