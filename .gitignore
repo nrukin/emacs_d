@@ -6,3 +6,10 @@
 /transient/
 /.secret.el
 /bookmarks
+/config.el
+/custom.el
+/.secret-init.el
+/.last-package-update-day
+/recentf
+/org-persist/
+/url/
