@@ -1,0 +1,20 @@
+* Локальные файлы настроек
+** .secret-init.el
+Вызывается после объявления флагов, но до
+основного кода настроек
+#+begin_src emacs-lisp
+  (setq me/load-elfeed-p t)
+#+end_src
+** .elfeed.el
+#+begin_src emacs-lisp
+  (setq elfeed-feeds
+	'(("https://habr.com/ru/rss/best/daily/?fl=ru" habr)
+	  ("http://www.reddit.com/r/emacs/.rss" emacs reddit)
+	  ("http://www.reddit.com/r/orgmode/.rss" orgmode reddit)
+	  ("https://emacs.stackexchange.com/feeds" emacs)))
+#+end_src
+** .secret.el
+Вызывается после основного кода настроек
+#+begin_src emacs-lisp
+  (windows-shell-encoding-config)
+#+end_src
