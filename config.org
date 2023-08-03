@@ -386,11 +386,44 @@
 			      (display-line-numbers-mode 1)
 			      (hs-minor-mode)))
   (electric-pair-mode 1)
+  (setq compilation-ask-about-save nil)
 #+end_src
 ** rainbow-delimeters
 #+begin_src emacs-lisp
   (use-package rainbow-delimiters
     :hook (prog-mode . rainbow-delimiters-mode))
+#+end_src
+** golang
+*** go-mode
+#+begin_src emacs-lisp
+  (use-package go-mode
+    :init
+    (setq gofmt-command "goimports")
+    :hook ((before-save . gofmt-before-save)
+	   (go-mode . (lambda () (local-set-key [f5] 'project-compile)))))
+#+end_src
+*** debugger
+#+begin_src emacs-lisp
+  (use-package go-dlv)
+#+end_src
+*** test
+#+begin_src emacs-lisp
+  (use-package gotest)
+#+end_src
+*** playground
+#+begin_src emacs-lisp
+  (use-package go-playground)
+#+end_src
+** yasnippet
+*** package
+#+begin_src emacs-lisp
+  (use-package yasnippet
+    :config (yas-global-mode 1))
+#+end_src
+*** snippets
+#+begin_src emacs-lisp
+  (use-package yasnippet-snippets
+    :after yasnippet)
 #+end_src
 ** company
 #+begin_src emacs-lisp
@@ -405,6 +438,12 @@
 ** json
 #+begin_src emacs-lisp
   (use-package json-mode)
+#+end_src
+** eglot
+#+begin_src emacs-lisp
+  (use-package eglot
+    :hook (go-mode . eglot-ensure)
+    :after (yasnippet company))
 #+end_src
 * Mastodon
 ** Загрузка Mastodon
