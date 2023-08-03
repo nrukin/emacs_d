@@ -191,7 +191,7 @@
       (format-time-string "%Y-%m-%d %H:%M" (seconds-to-time date)))
     (setq elfeed-search-title-max-width 100)
     (let (( cnf-file (expand-file-name ".elfeed.el" user-emacs-directory)))
-      (load-file cnf-file))
+      (load-file cnf-file)))
 #+end_src
 * Magit
 #+begin_src emacs-lisp
