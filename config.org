@@ -96,6 +96,10 @@
     :config
     (nyan-mode t))
 #+end_src
+** emojify
+#+begin_src emacs-lisp
+  (use-package emojify)
+#+end_src
 * Общие настройки
 ** Локализация
 *** Язык ввода
@@ -401,6 +405,25 @@
 ** json
 #+begin_src emacs-lisp
   (use-package json-mode)
+#+end_src
+* Mastodon
+** Загрузка Mastodon
+#+begin_src emacs-lisp
+  (use-package mastodon
+    :if load-mastodon
+    :bind ("C-x y" . mastodon)
+    :config
+    (mastodon-discover)
+    (mastodon-toot--enable-custom-emoji)
+    (setq mastodon-tl--show-avatars t)
+    (setq mastodon-toot--enable-custom-instance-emoji t))
+#+end_src
+** Lingva
+#+begin_src emacs-lisp
+  (use-package lingva
+    :if load-mastodon
+    :config
+    (setq lingva-target "ru"))
 #+end_src
 * Dashboard
 #+begin_src emacs-lisp
