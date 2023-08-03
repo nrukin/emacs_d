@@ -228,6 +228,7 @@
     (setq org-startup-folded 'content)
     (setq org-adapt-indentation nil)
     (setq org-bookmark-names-plist nil)
+    (add-to-list 'org-modules 'org-habit t)
     (setq org-export-with-sub-superscripts '{})
     (add-to-list 'org-structure-template-alist '("g" . "src go") t)
     (add-to-list 'org-structure-template-alist '("z" . "src emacs-lisp") t)
