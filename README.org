@@ -6,6 +6,8 @@
   (setq me/load-elfeed-p t)
 #+end_src
 ** .elfeed.el
+Настройка elfeed - список подписок и настройки цвета.
+Вызывается в процессе инициализации =elfeed=
 #+begin_src emacs-lisp
   (setq elfeed-feeds
 	'(("https://habr.com/ru/rss/best/daily/?fl=ru" habr)
