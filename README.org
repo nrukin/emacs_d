@@ -1,3 +1,12 @@
+* Настройка
+** Установка шрифтов
+#+begin_src
+  M-x all-the-icons-install-fonts
+#+end_src
+** Сочетания клавиш
++ =C-x w= - Запуск Elfeed
++ =C-x y= - Запуск Mastodon
++ =F9= - Команды учета рабочего времени
 * Локальные файлы настроек
 ** .secret-init.el
 Вызывается после объявления флагов, но до
@@ -19,4 +28,15 @@
 Вызывается после основного кода настроек
 #+begin_src emacs-lisp
   (windows-shell-encoding-config)
+
+  ;; windows org -> odt export needs zip library
+  (add-to-list 'exec-path "~/Programs/zip300xn")
+#+end_src
+** ~/org_sync/filters/org
+#+begin_src
+- *~
+- .#*
+- .~*#
+- #*#
+- .git/*
 #+end_src
