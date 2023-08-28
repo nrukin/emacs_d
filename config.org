@@ -440,6 +440,10 @@
 #+begin_src emacs-lisp
   (use-package json-mode)
 #+end_src
+** auto-hotkey
+#+begin_src emacs-lisp
+  (use-package ahk-mode)
+#+end_src
 ** eglot
 #+begin_src emacs-lisp
   (use-package eglot
