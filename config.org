@@ -56,11 +56,11 @@
   (me/load-config-file ".secret-init")
 #+end_src
 * Оформление
-** Тема
+** Тема Zenburn
 #+begin_src emacs-lisp
-  (use-package dracula-theme
+  (use-package zenburn-theme
     :config
-    (load-theme 'dracula t))
+    (load-theme 'zenburn t))
 #+end_src
 ** Скрыть меню, скролбар и тулбар
 #+begin_src emacs-lisp
