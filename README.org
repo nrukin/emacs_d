@@ -8,13 +8,14 @@
 + =C-x y= - Запуск Mastodon
 + =F9= - Команды учета рабочего времени
 * Локальные файлы настроек
-** .secret-init.el
+Располагаются в каталоге =.secret=
+** init.el
 Вызывается после объявления флагов, но до
 основного кода настроек
 #+begin_src emacs-lisp
   (setq me/load-elfeed-p t)
 #+end_src
-** .elfeed.el
+** elfeed.el
 Настройка elfeed - список подписок и настройки цвета.
 Вызывается в процессе инициализации =elfeed=
 #+begin_src emacs-lisp
@@ -24,7 +25,7 @@
 	  ("http://www.reddit.com/r/orgmode/.rss" orgmode reddit)
 	  ("https://emacs.stackexchange.com/feeds" emacs)))
 #+end_src
-** .secret.el
+** config.el
 Вызывается после основного кода настроек
 #+begin_src emacs-lisp
   (windows-shell-encoding-config)
