@@ -106,7 +106,8 @@
 #+end_src
 ** emojify
 #+begin_src emacs-lisp
-  (use-package emojify)
+  (use-package emojify
+    :hook (after-init . global-emojify-mode))
 #+end_src
 * Общие настройки
 ** Локализация
