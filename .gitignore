@@ -17,3 +17,7 @@
 /mastodon.plstore
 /emojis/
 /.secret/
+session.*
+/projects
+/persist/
+/emms/
