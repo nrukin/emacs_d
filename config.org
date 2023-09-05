@@ -30,11 +30,19 @@
   (defvar load-rclone-org nil)
 #+end_src
 *** Elfeed
+**** load-elfeed
 #+begin_src emacs-lisp
   (defvar me/load-elfeed-p nil)
   (defvar me/elfeed-cnf-file (expand-file-name ".secret/elfeed.el" user-emacs-directory))
   (when (file-exists-p me/elfeed-cnf-file)
     (setq me/load-elfeed-p t))
+#+end_src
+**** load-elfeed-org
+#+begin_src emacs-lisp
+  (defvar me/load-elfeed-org nil)
+  (defvar me/elfeed-org-file (expand-file-name ".secret/elfeed.org" user-emacs-directory))
+  (when (file-exists-p me/elfeed-org-file)
+    (setq me/load-elfeed-org t))
 #+end_src
 ** Функция исправления ошибки
 #+begin_src emacs-lisp
@@ -186,6 +194,7 @@
 * Elfeed
 #+begin_src emacs-lisp
   (use-package elfeed
+    :after (org)
     :if me/load-elfeed-p
     :bind ("C-x w" . elfeed)
     :config
@@ -194,7 +203,24 @@
     (defun elfeed-search-format-date (date)
       (format-time-string "%Y-%m-%d %H:%M" (seconds-to-time date)))
     (setq elfeed-search-title-max-width 100)
-    (load-file me/elfeed-cnf-file))
+    (load-file me/elfeed-cnf-file)
+
+    (defun elfeed-org-capture-template ()
+      (if elfeed-show-entry (let ((link (elfeed-entry-link elfeed-show-entry))
+				  (title (elfeed-entry-title elfeed-show-entry))
+				  (tags (elfeed-entry-tags elfeed-show-entry)))
+			      (format "* TODO %s %s%%(org-set-tags \"elfeed\")%%(my/org-set-created)\n%s" title tags link)) "* %?"))
+    (add-to-list 'org-capture-templates '("f" "Elfeed" entry
+					  (file my/org-inbox-file-name)
+					  (function elfeed-org-capture-template) :empty-lines 1  :immediate-finish t)))
+#+end_src
+** elfeed-org
+#+begin_src emacs-lisp
+  (use-package elfeed-org
+    :if me/load-elfeed-org
+    :config
+    (elfeed-org)
+    (setq rmh-elfeed-org-files (list me/elfeed-org-file)))
 #+end_src
 * Magit
 #+begin_src emacs-lisp
