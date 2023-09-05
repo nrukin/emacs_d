@@ -287,6 +287,17 @@
     (with-eval-after-load 'org
       (define-key org-mode-map (kbd "C-c C-r") verb-command-map)))
 #+end_src
+** Быстрое редактирование свойства jira на F7
+https://nrukin.github.io/jira-prop-hotkey.html
+#+begin_src emacs-lisp
+  ;; f7 hotkey to edit jira heading property
+  (defun org-set-jira(jira-value)
+    "set jira property at current heading"
+    (interactive (list (read-from-minibuffer "Jira? " (org-entry-get nil "jira"))))
+    (org-set-property "jira" jira-value))
+
+  (define-key org-mode-map (kbd "<f7>") 'org-set-jira)
+#+end_src
 * Rclone-org-sync
 #+begin_src emacs-lisp
   (defvar rclone-path "" "path to rclone binary")
