@@ -218,6 +218,7 @@
 ** elfeed-org
 #+begin_src emacs-lisp
   (use-package elfeed-org
+    :after (elfeed org)
     :if me/load-elfeed-org
     :config
     (elfeed-org)
