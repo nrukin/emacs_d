@@ -507,6 +507,53 @@ https://nrukin.github.io/jira-prop-hotkey.html
     :config
     (setq lingva-target "ru"))
 #+end_src
+* emms
+#+begin_src emacs-lisp
+  (use-package emms
+    :config
+    (require 'emms-setup)
+    (emms-all)
+    (setq emms-player-list '(emms-player-mpv)
+	  emms-info-functions '(emms-info-native))
+    (customize-set-variable 'emms-player-mpv-update-metadata t)
+    (setq emms-streams-file "~/.emacs.d/.secret/streams.emms")
+
+    (defun my/emms-track-description (track)
+      (if (eq (emms-track-type track) 'url)
+	  (let ((rdo (emms-track-get track 'radio))
+		(infttl (emms-track-get track 'info-title)))
+	    (if (and rdo infttl)	    
+		(format "%-30s: %s" rdo infttl)
+	      (if rdo rdo
+		(emms-track-simple-description track))))
+	(emms-track-simple-description track)))
+
+    (setq emms-track-description-function 'my/emms-track-description))
+#+end_src
+** COMMENT normal
+#+begin_src emacs-lisp
+  (require 'emms-setup)
+  (emms-all)
+  (setq emms-player-list '(emms-player-mpv)
+	emms-info-functions '(emms-info-native))
+  (customize-set-variable 'emms-player-mpv-update-metadata t)
+
+
+  (defun my/emms-track-description (track)
+    ;; (print track)
+    (if (eq (emms-track-type track) 'url)
+	(let ((rdo (emms-track-get track 'radio))
+	      (infttl (emms-track-get track 'info-title)))
+	  (if (and rdo infttl)	    
+	      (format "%s: %s"
+		      (emms-track-get track 'radio)
+		      (emms-track-get track 'info-title))
+	    (if rdo
+		rdo
+	      (emms-track-simple-description track))))
+      (emms-track-simple-description track)))
+  (setq emms-track-description-function 'my/emms-track-description)
+#+end_src
 * Dashboard
 #+begin_src emacs-lisp
   (use-package dashboard
