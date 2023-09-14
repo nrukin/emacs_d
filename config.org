@@ -192,44 +192,6 @@
     :requires all-the-icons
     :hook (dired-mode . all-the-icons-dired-mode))
 #+end_src
-* Elfeed
-#+begin_src emacs-lisp
-  (use-package elfeed
-    :after (org)
-    :if me/load-elfeed-p
-    :bind ("C-x w" . elfeed)
-    :config
-    (when run-on-win-p
-      (setq elfeed-use-curl nil))
-    (defun elfeed-search-format-date (date)
-      (format-time-string "%Y-%m-%d %H:%M" (seconds-to-time date)))
-    (setq elfeed-search-title-max-width 100)
-    (load-file me/elfeed-cnf-file)
-
-    (defun elfeed-org-capture-template ()
-      (if elfeed-show-entry (let ((link (elfeed-entry-link elfeed-show-entry))
-				  (title (elfeed-entry-title elfeed-show-entry))
-				  (tags (elfeed-entry-tags elfeed-show-entry)))
-			      (format "* TODO %s %s%%(org-set-tags \"elfeed\")%%(my/org-set-created)\n%s" title tags link)) "* %?"))
-    (add-to-list 'org-capture-templates '("f" "Elfeed" entry
-					  (file my/org-inbox-file-name)
-					  (function elfeed-org-capture-template) :empty-lines 1  :immediate-finish t)))
-#+end_src
-** elfeed-org
-#+begin_src emacs-lisp
-  (use-package elfeed-org
-    :after (elfeed org)
-    :if me/load-elfeed-org
-    :config
-    (elfeed-org)
-    (setq rmh-elfeed-org-files (list me/elfeed-org-file)))
-#+end_src
-* Magit
-#+begin_src emacs-lisp
-  (use-package magit
-    :init
-    (setq magit-commit-show-diff nil))
-#+end_src
 * Org
 ** Основная настройка
 #+begin_src emacs-lisp
@@ -325,6 +287,44 @@ https://nrukin.github.io/jira-prop-hotkey.html
     (org-set-property "jira" jira-value))
 
   (define-key org-mode-map (kbd "<f7>") 'org-set-jira)
+#+end_src
+* Elfeed
+#+begin_src emacs-lisp
+  (use-package elfeed
+    :after (org)
+    :if me/load-elfeed-p
+    :bind ("C-x w" . elfeed)
+    :config
+    (when run-on-win-p
+      (setq elfeed-use-curl nil))
+    (defun elfeed-search-format-date (date)
+      (format-time-string "%Y-%m-%d %H:%M" (seconds-to-time date)))
+    (setq elfeed-search-title-max-width 100)
+    (load-file me/elfeed-cnf-file)
+
+    (defun elfeed-org-capture-template ()
+      (if elfeed-show-entry (let ((link (elfeed-entry-link elfeed-show-entry))
+				  (title (elfeed-entry-title elfeed-show-entry))
+				  (tags (elfeed-entry-tags elfeed-show-entry)))
+			      (format "* TODO %s %s%%(org-set-tags \"elfeed\")%%(my/org-set-created)\n%s" title tags link)) "* %?"))
+    (add-to-list 'org-capture-templates '("f" "Elfeed" entry
+					  (file my/org-inbox-file-name)
+					  (function elfeed-org-capture-template) :empty-lines 1  :immediate-finish t)))
+#+end_src
+** elfeed-org
+#+begin_src emacs-lisp
+  (use-package elfeed-org
+    :after (elfeed org)
+    :if me/load-elfeed-org
+    :config
+    (elfeed-org)
+    (setq rmh-elfeed-org-files (list me/elfeed-org-file)))
+#+end_src
+* Magit
+#+begin_src emacs-lisp
+  (use-package magit
+    :init
+    (setq magit-commit-show-diff nil))
 #+end_src
 * Rclone-org-sync
 #+begin_src emacs-lisp
