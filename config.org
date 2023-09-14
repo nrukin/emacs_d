@@ -605,6 +605,13 @@ https://nrukin.github.io/jira-prop-hotkey.html
 		      "rclone-org-upload"
 		      (lambda (&rest _) (rclone-org-upload)))) t))
 
+    (when t
+      (add-to-list 'dashboard-navigator-buttons
+		   `((,(all-the-icons-faicon "music" :height 1.1 :v-adjust 0.0)
+		      "Radio"
+		      ""
+		      (lambda (&rest _) (emms-streams)))) t))
+
     (dashboard-setup-startup-hook))
 #+end_src
 * custom.el
