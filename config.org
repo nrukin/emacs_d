@@ -385,7 +385,8 @@ https://nrukin.github.io/jira-prop-hotkey.html
 #+begin_src emacs-lisp
   (use-package hydra
     :defer 2
-    :bind (("<f9>" . hydra-clock/body))
+    :bind (("<f9>" . hydra-clock/body)
+	   ("<f8>" . hydra-go/body))
     :preface
     (defun my/org-clock-in-last-with-prefix-arg ()
       (interactive)
@@ -415,7 +416,37 @@ https://nrukin.github.io/jira-prop-hotkey.html
       ("j" org-clock-goto)
       ("o" org-clock-out)
       ("r" org-clock-report)
-      ("l" my/org-clock-in-last-with-prefix-arg)))
+      ("l" my/org-clock-in-last-with-prefix-arg))
+
+    (defhydra hydra-go (:color blue)
+      "
+      ^
+      ^Code^                  ^Folding^         ^Test^
+      ^─────^─────────────────^───────^─────────^─────^─────────
+      _c_ code actions        _f_ fold          _t_ file
+      _r_ rename              _s_ unfold        _T_ project
+      _q_ quit                _F_ fold all      _b_ benchmark file
+      _d_ buffer diagnostics  _S_ unfold all    _B_ benchmark project
+      _D_ project diagnostics
+      _h_ doc
+      _H_ doc buffer
+      ^^
+      "
+      ("c" eglot-code-actions)
+      ("r" eglot-rename)
+      ("d" flymake-show-buffer-diagnostics)
+      ("D" flymake-show-project-diagnostics)
+      ("h" eldoc)
+      ("H" eldoc-doc-buffer)
+      ("f" hs-hide-block :color red)
+      ("s" hs-show-block :color red)
+      ("F" hs-hide-all :color red)
+      ("S" hs-show-all :color red)
+      ("t" go-test-current-file)
+      ("T" go-test-current-project)
+      ("b" go-test-current-file-benchmarks)
+      ("B" go-test-current-project-benchmarks)
+      ("q" nil)))
 #+end_src
 * Программирование
 ** Общие
