@@ -79,7 +79,7 @@
 ** Настройка шрифта
 #+begin_src emacs-lisp
   (add-to-list 'default-frame-alist
-	       '(font . "Fira Code-10"))
+	       '(font . "Fira Code-12"))
 #+end_src
 ** Отключить звуки
 #+begin_src emacs-lisp
