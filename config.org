@@ -526,6 +526,11 @@ https://nrukin.github.io/jira-prop-hotkey.html
     :hook (go-mode . eglot-ensure)
     :after (yasnippet company))
 #+end_src
+** yaml-mode
+#+begin_src emacs-lisp
+  (use-package yaml-mode
+    :mode "\\.yml\\'")
+#+end_src
 * Mastodon
 ** Загрузка Mastodon
 #+begin_src emacs-lisp
