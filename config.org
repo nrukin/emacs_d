@@ -388,6 +388,15 @@ https://nrukin.github.io/jira-prop-hotkey.html
       (rclone-org-upload)
       (kill-emacs)))
 #+end_src
+* Treemacs
+#+begin_src emacs-lisp
+  (use-package treemacs
+    :defer t)
+
+  (use-package treemacs-magit
+    :after (treemacs magit)
+    :ensure t)
+#+end_src
 * Hydra
 #+begin_src emacs-lisp
   (use-package hydra
