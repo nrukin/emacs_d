@@ -336,7 +336,8 @@ https://nrukin.github.io/jira-prop-hotkey.html
 * Treemacs
 #+begin_src emacs-lisp
   (use-package treemacs
-    :defer t)
+    :defer t
+    :bind ("C-x !" . treemacs))
 
   (use-package treemacs-magit
     :after (treemacs magit)
