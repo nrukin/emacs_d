@@ -23,3 +23,5 @@ session.*
 /emms/
 /eln-cache/
 /tramp
+/.cache/
+/games/
