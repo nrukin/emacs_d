@@ -333,6 +333,10 @@ https://nrukin.github.io/jira-prop-hotkey.html
     :init
     (setq magit-commit-show-diff nil))
 #+end_src
+* Minimap
+#+begin_src emacs-lisp
+  (use-package minimap)
+#+end_src
 * Treemacs
 #+begin_src emacs-lisp
   (use-package treemacs
