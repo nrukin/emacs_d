@@ -491,7 +491,7 @@ https://nrukin.github.io/jira-prop-hotkey.html
     :mode "\\.yml\\'")
 #+end_src
 ** python
-*** elpy
+*** COMMENT elpy
 https://github.com/jorgenschaefer/elpy
 #+begin_src emacs-lisp
   (use-package elpy
