@@ -490,6 +490,20 @@ https://nrukin.github.io/jira-prop-hotkey.html
   (use-package yaml-mode
     :mode "\\.yml\\'")
 #+end_src
+** python
+*** elpy
+https://github.com/jorgenschaefer/elpy
+#+begin_src emacs-lisp
+  (use-package elpy
+    :ensure t
+    :init
+    (elpy-enable)
+    (setq elpy-formatter "autopep8")
+    :hook ((before-save . (lambda()
+			    (when (eq major-mode 'python-mode)
+			      (elpy-format-code))))
+	   (pyvenv-post-activate-hooks . pyvenv-restart-python)))
+#+end_src
 * Mastodon
 ** Загрузка Mastodon
 #+begin_src emacs-lisp
