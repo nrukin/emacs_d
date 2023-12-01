@@ -483,6 +483,7 @@ https://nrukin.github.io/jira-prop-hotkey.html
 #+begin_src emacs-lisp
   (use-package eglot
     :hook (go-mode . eglot-ensure)
+    (python-mode . eglot-ensure)
     :after (yasnippet company))
 #+end_src
 ** yaml-mode
