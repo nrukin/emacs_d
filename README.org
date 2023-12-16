@@ -3,6 +3,10 @@
 #+begin_src
   M-x all-the-icons-install-fonts
 #+end_src
+** Mastodon. Загрузка emoji
+#+begin_src
+  M-x mastodon-toot--download-custom-emoji
+#+end_src
 ** Сочетания клавиш
 + =C-x w= - Запуск Elfeed
 + =C-x y= - Запуск Mastodon
