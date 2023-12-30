@@ -98,7 +98,7 @@
   (setq-default cursor-type 'bar)
   (if (fboundp 'blink-cursor-mode) (blink-cursor-mode 0))
 #+end_src
-** nya
+** COMMENT nya
 #+begin_src emacs-lisp
   (use-package nyan-mode
     :config
