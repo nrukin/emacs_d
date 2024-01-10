@@ -113,10 +113,6 @@
 	 "Июл" "Авг" "Сен"
 	 "Окт" "Ноя" "Дек"])
 #+end_src
-** COMMENT Основной буфер при запуске
-#+begin_src emacs-lisp
-  (setq initial-buffer-choice t)
-#+end_src
 ** Файлы бэкапов, блокировок
 #+begin_src emacs-lisp
   (let ((backup-dir (format "%sbackups" (file-name-directory user-init-file))))
