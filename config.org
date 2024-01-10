@@ -63,51 +63,26 @@
 #+begin_src emacs-lisp
   (me/load-config-file ".secret/init")
 #+end_src
-* Оформление
-** Тема Zenburn
+* Emacs глобально
 #+begin_src emacs-lisp
-  (use-package zenburn-theme
-    :config
-    (load-theme 'zenburn t))
-#+end_src
-** Скрыть меню, скролбар и тулбар
-#+begin_src emacs-lisp
-  (menu-bar-mode -1)
-  (scroll-bar-mode -1)
-  (tool-bar-mode -1)
-#+end_src
-** Настройка шрифта
-#+begin_src emacs-lisp
-  (add-to-list 'default-frame-alist
-	       '(font . "Fira Code-12"))
-#+end_src
-** Отключить звуки
-#+begin_src emacs-lisp
-  (setq ring-bell-function 'ignore)
-#+end_src
-** Отключить диалоги
-#+begin_src emacs-lisp
-  (setq use-dialog-box nil)
-#+end_src
-** Упростить вопросы
-#+begin_src emacs-lisp
-  (fset 'yes-or-no-p 'y-or-n-p)
-#+end_src
-** Настройка курсора
-#+begin_src emacs-lisp
-  (setq-default cursor-type 'bar)
-  (if (fboundp 'blink-cursor-mode) (blink-cursor-mode 0))
-#+end_src
-** COMMENT nya
-#+begin_src emacs-lisp
-  (use-package nyan-mode
-    :config
-    (nyan-mode t))
-#+end_src
-** emojify
-#+begin_src emacs-lisp
-  (use-package emojify
-    :hook (after-init . global-emojify-mode))
+  (use-package emacs
+    :init
+    ;; Скрыть меню, скролбар, тулбар
+    (menu-bar-mode -1)
+    (scroll-bar-mode -1)
+    (tool-bar-mode -1)
+    ;; отключить звуки
+    (setq ring-bell-function 'ignore)
+    ;; настроить шрифт
+    (add-to-list 'default-frame-alist
+		 '(font . "Fira Code-12"))
+    ;; отключить диалоги
+    (setq use-dialog-box nil)
+    ;; Упростить вопросы
+    (fset 'yes-or-no-p 'y-or-n-p)
+    ;; курсор
+    (setq-default cursor-type 'bar)
+    (if (fboundp 'blink-cursor-mode) (blink-cursor-mode 0)))
 #+end_src
 * Общие настройки
 ** Локализация
@@ -138,7 +113,7 @@
 	 "Июл" "Авг" "Сен"
 	 "Окт" "Ноя" "Дек"])
 #+end_src
-** Основной буфер при запуске
+** COMMENT Основной буфер при запуске
 #+begin_src emacs-lisp
   (setq initial-buffer-choice t)
 #+end_src
@@ -191,6 +166,17 @@
   (use-package all-the-icons-dired
     :requires all-the-icons
     :hook (dired-mode . all-the-icons-dired-mode))
+#+end_src
+* Тема Zenburn
+#+begin_src emacs-lisp
+  (use-package zenburn-theme
+    :config
+    (load-theme 'zenburn t))
+#+end_src
+* emojify
+#+begin_src emacs-lisp
+  (use-package emojify
+    :hook (after-init . global-emojify-mode))
 #+end_src
 * Org
 ** Основная настройка
