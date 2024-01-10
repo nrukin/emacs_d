@@ -105,20 +105,18 @@
 	  ["Янв" "Фев" "Мар"
 	   "Апр" "Май" "Июн"
 	   "Июл" "Авг" "Сен"
-	   "Окт" "Ноя" "Дек"]))
+	   "Окт" "Ноя" "Дек"])
+    ;; Настройка файлов бэкапов и блокировок
+    (let ((backup-dir (format "%sbackups" (file-name-directory user-init-file))))
+      (add-to-list 'backup-directory-alist `("." . ,backup-dir)))
+    (setq version-control t)
+    (setq delete-old-versions t)
+    (setq kept-new-versions 4)
+    (setq kept-old-versions 4)
+    (global-auto-revert-mode t)
+    (setq create-lockfiles nil))
 #+end_src
 * Общие настройки
-** Файлы бэкапов, блокировок
-#+begin_src emacs-lisp
-  (let ((backup-dir (format "%sbackups" (file-name-directory user-init-file))))
-    (add-to-list 'backup-directory-alist `("." . ,backup-dir)))
-  (setq version-control t)
-  (setq delete-old-versions t)
-  (setq kept-new-versions 4)
-  (setq kept-old-versions 4)
-  (global-auto-revert-mode t)
-  (setq create-lockfiles nil)
-#+end_src
 ** ibuffer
 #+begin_src emacs-lisp
   (use-package ibuffer
