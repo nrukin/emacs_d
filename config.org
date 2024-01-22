@@ -316,7 +316,7 @@ https://nrukin.github.io/jira-prop-hotkey.html
 #+begin_src emacs-lisp
   (use-package treemacs
     :defer t
-    :bind ("C-x !" . treemacs))
+    :bind ("C-x !" . treemacs-select-window))
 
   (use-package treemacs-magit
     :after (treemacs magit)
