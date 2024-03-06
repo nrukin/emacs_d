@@ -522,7 +522,7 @@ https://github.com/jorgenschaefer/elpy
 	  (let ((rdo (emms-track-get track 'radio))
 		(infttl (emms-track-get track 'info-title)))
 	    (if (and rdo infttl)	    
-		(format "%-30s: %s" rdo infttl)
+		(format "%-50s: %s" rdo infttl)
 	      (if rdo rdo
 		(emms-track-simple-description track))))
 	(emms-track-simple-description track)))
