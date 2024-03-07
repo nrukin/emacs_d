@@ -376,6 +376,7 @@ https://nrukin.github.io/jira-prop-hotkey.html
       _D_ project diagnostics
       _h_ doc
       _H_ doc buffer
+      _v_ format buffer
       ^^
       "
       ("c" eglot-code-actions)
@@ -384,6 +385,7 @@ https://nrukin.github.io/jira-prop-hotkey.html
       ("D" flymake-show-project-diagnostics)
       ("h" eldoc)
       ("H" eldoc-doc-buffer)
+      ("v" eglot-format-buffer)
       ("f" hs-hide-block :color red)
       ("s" hs-show-block :color red)
       ("F" hs-hide-all :color red)
