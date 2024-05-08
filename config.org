@@ -298,15 +298,6 @@ https://nrukin.github.io/jira-prop-hotkey.html
 					  (file my/org-inbox-file-name)
 					  (function elfeed-org-capture-template) :empty-lines 1  :immediate-finish t)))
 #+end_src
-** elfeed-org
-#+begin_src emacs-lisp
-  (use-package elfeed-org
-    :after (elfeed org)
-    :if me/load-elfeed-org
-    :config
-    (elfeed-org)
-    (setq rmh-elfeed-org-files (list me/elfeed-org-file)))
-#+end_src
 * Magit
 #+begin_src emacs-lisp
   (use-package magit
