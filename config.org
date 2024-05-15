@@ -255,6 +255,10 @@
     :after (org)
     :hook (org-mode . toc-org-mode))
 #+end_src
+** org-pomodoro
+#+begin_src emacs-lisp
+  (use-package org-pomodoro)
+#+end_src
 ** verb
 #+begin_src emacs-lisp
   (use-package verb
