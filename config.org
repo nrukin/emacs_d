@@ -342,6 +342,7 @@ https://nrukin.github.io/jira-prop-hotkey.html
       ^─────^─────────────^──^─────────
       _q_ quit            _c_ cancel
       ^^                  _d_ display
+      ^^                  _h_ hide
       ^^                  _e_ effort
       ^^                  _i_ in
       ^^                  _j_ jump
@@ -351,8 +352,9 @@ https://nrukin.github.io/jira-prop-hotkey.html
       ^^                  ^^
       "
       ("q" nil)
+      ("d" org-clock-display :color red)
+      ("h" org-clock-remove-overlays :color red)
       ("c" org-clock-cancel :color pink)
-      ("d" org-clock-display)
       ("e" org-clock-modify-effort-estimate)
       ("i" org-clock-in)
       ("j" org-clock-goto)
