@@ -141,7 +141,7 @@
 #+begin_src emacs-lisp
   (use-package discover)
 #+end_src
-** auto-package-update
+** COMMENT auto-package-update
 #+begin_src emacs-lisp
   (use-package auto-package-update
     :config
