@@ -210,6 +210,9 @@
     (setq org-refile-use-outline-path 'file)
     (setq org-directory "~/org/")
     (setq org-agenda-files (list org-directory))
+    ;; priority from A to E
+    (setq org-priority-default 67)
+    (setq org-priority-lowest 69)
     ;; org-capture-templates
     (add-to-list 'org-capture-templates
 		 '("i" "Inbox"
