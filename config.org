@@ -283,6 +283,16 @@ https://nrukin.github.io/jira-prop-hotkey.html
 
   (define-key org-mode-map (kbd "<f7>") 'org-set-jira)
 #+end_src
+** Настройка ediff
+При сравнении двух файлов org - разворачиваем их содержимое
+#+begin_src emacs-lisp
+  (defun my/ediff-org-prepare ()
+    (when (eq major-mode 'org-mode)
+      (org-show-all)))
+
+  (add-hook 'ediff-prepare-buffer-hook #'my/ediff-org-prepare)
+
+#+end_src
 * Elfeed
 #+begin_src emacs-lisp
   (use-package elfeed
