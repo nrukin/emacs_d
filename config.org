@@ -633,6 +633,37 @@ https://github.com/jorgenschaefer/elpy
 
     (dashboard-setup-startup-hook))
 #+end_src
+* Синхронизация org-каталога через rclone
+#+begin_src emacs-lisp
+  (defvar rclone-enabled nil "enable rclone sync")
+  (defvar rclone-path "rclone" "rclone binary path")
+  (defvar rclone-local-path "" "local dir")
+  (defvar rclone-remote-path "" "remote dir")
+  (defvar rclone-exclude "" "exclude filter")
+
+  (add-to-list 'display-buffer-alist
+	       (cons "\\*rclone-log\\*" (cons #'display-buffer-no-window nil)))
+
+  (defun rclone-bisync ()
+    "run bisync"
+    (interactive)
+    (when rclone-enabled
+      (async-shell-command
+       (format "%s bisync %s --log-level=INFO %s %s"
+	       rclone-path
+	       (if (string= "" rclone-exclude)
+		   ""
+		 (format "--exclude=%s" rclone-exclude))
+	       rclone-local-path
+	       rclone-remote-path)
+       "*rclone-log*"
+       "*rclone-log*")))
+
+  (run-with-idle-timer
+   300
+   t
+   'rclone-bisync)
+#+end_src
 * custom.el
 Отдельный файл для настроек
 #+begin_src emacs-lisp
