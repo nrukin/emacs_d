@@ -639,7 +639,7 @@ https://github.com/jorgenschaefer/elpy
   (defvar rclone-path "rclone" "rclone binary path")
   (defvar rclone-local-path "" "local dir")
   (defvar rclone-remote-path "" "remote dir")
-  (defvar rclone-exclude "" "exclude filter")
+  (defvar rclone-exclude "{*~,.#*,.~*#,#*#}" "exclude filter")
 
   (add-to-list 'display-buffer-alist
 	       (cons "\\*rclone-log\\*" (cons #'display-buffer-no-window nil)))
