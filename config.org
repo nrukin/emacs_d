@@ -659,6 +659,10 @@ https://github.com/jorgenschaefer/elpy
        "*rclone-log*"
        "*rclone-log*")))
 
+  (add-hook
+   'emacs-startup-hook
+   'rclone-bisync)
+
   (run-with-idle-timer
    300
    t
