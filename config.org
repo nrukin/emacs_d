@@ -668,6 +668,14 @@ https://github.com/jorgenschaefer/elpy
    t
    'rclone-bisync)
 #+end_src
+* Разрешить отключенные команды
+Разрешаю выключенные по-умолчанию команды
+| Команда          | Сочетание | Описание           |
+|------------------+-----------+--------------------|
+| narrow-to-region | C-x n n   | Фокус на выделении |
+#+begin_src emacs-lisp
+  (put 'narrow-to-region 'disabled nil)
+#+end_src
 * custom.el
 Отдельный файл для настроек
 #+begin_src emacs-lisp
