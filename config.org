@@ -292,6 +292,23 @@ https://nrukin.github.io/jira-prop-hotkey.html
 
   (add-hook 'ediff-prepare-buffer-hook #'my/ediff-org-prepare)
 
+** org-web-tool
+https://github.com/alphapapa/org-web-tools
+#+begin_src emacs-lisp
+  (use-package org-web-tools
+    :requires org
+    :after (org))
+
+  (defun dfdfghg ()
+    (if elfeed-show-entry (let ((link (elfeed-entry-link elfeed-show-entry))
+				(title (elfeed-entry-title elfeed-show-entry))
+				(tags (elfeed-entry-tags elfeed-show-entry)))
+			    (org-web-tools-insert-web-page-as-entry link))))
+
+  (add-to-list 'org-capture-templates '("n" "Elfeed-Capture" entry
+					(file my/org-inbox-file-name)
+					"" :empty-lines 1  :immediate-finish t
+					:hook dfdfghg))
 #+end_src
 * Elfeed
 #+begin_src emacs-lisp
