@@ -34,7 +34,7 @@
   (if (fboundp 'blink-cursor-mode) (blink-cursor-mode 0))
 
   (add-to-list 'default-frame-alist
-	       '(font . "Fira Code-10"))
+	       '(font . "Fira Code-12"))  
 
   (setq default-input-method "russian-computer")
 
@@ -67,6 +67,28 @@
   (setq kept-old-versions 4)
   (global-auto-revert-mode t)
   (setq create-lockfiles nil))
+
+;; лигатуры для fira code
+(use-package ligature
+  :ensure t
+  :config
+
+  ;; Enable the www ligature in every possible major mode
+  (ligature-set-ligatures 't '("www"))
+
+  ;; Enable ligatures in programming modes                                                           
+  (ligature-set-ligatures 'prog-mode '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "::"
+                                       ":::" ":=" "!!" "!=" "!==" "-}" "----" "-->" "->" "->>"
+                                       "-<" "-<<" "-~" "#{" "#[" "##" "###" "####" "#(" "#?" "#_"
+                                       "#_(" ".-" ".=" ".." "..<" "..." "?=" "??" ";;" "/*" "/**"
+                                       "/=" "/==" "/>" "//" "///" "&&" "||" "||=" "|=" "|>" "^=" "$>"
+                                       "++" "+++" "+>" "=:=" "==" "===" "==>" "=>" "=>>" "<="
+                                       "=<<" "=/=" ">-" ">=" ">=>" ">>" ">>-" ">>=" ">>>" "<*"
+                                       "<*>" "<|" "<|>" "<$" "<$>" "<!--" "<-" "<--" "<->" "<+"
+                                       "<+>" "<=" "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<"
+                                       "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
+
+  (global-ligature-mode 't))
 
 ;; ibuffer для диалога выбора буфера
 (use-package ibuffer
