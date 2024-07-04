@@ -1,23 +1,32 @@
-;; Создан 2024-06-19
-;; Вторая версия init.el файла
-;; упрощенная, вся инициализация в одном файле
+;;;; Создан 2024-06-19
+;;;; Вторая версия init.el файла
+;;;; упрощенная, вся инициализация в одном файле
 
-;; Общая процедура: загрузка файла по имени
+;;; Общие функции
+
+;; Загрузка файла по имени
 (defun me/load-config-file (file)
   "Загружает файл по имени"
   (let ((config-file (expand-file-name (format "%s.el" file) user-emacs-directory)))
     (when (file-exists-p config-file)
       (load-file config-file))))
 
-;; Загружаем локальный init файл
+;; Исправление кодировки в консоли Windows
+(defun windows-shell-encoding-config ()
+  (defadvice shell (after my-shell-advice)
+    (set-process-coding-system (get-buffer-process (current-buffer)) 'cp1251 'cp1251))
+  (ad-activate 'shell))
+
+;;; Загрузка локального init-файла
 (me/load-config-file ".secret/init")
 
-;; Настройка пакетов, подключение melpa
+;;; Настройка пакетов, подключение melpa
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
-;; Общие настройки emacs
+;;; use-package для настройки пакетов и emacs в целом
+
 (use-package emacs
   :init
   (menu-bar-mode -1)
@@ -68,15 +77,11 @@
   (global-auto-revert-mode t)
   (setq create-lockfiles nil))
 
-;; лигатуры для fira code
+;;; Настройка лигатур
 (use-package ligature
   :ensure t
   :config
-
-  ;; Enable the www ligature in every possible major mode
   (ligature-set-ligatures 't '("www"))
-
-  ;; Enable ligatures in programming modes                                                           
   (ligature-set-ligatures 'prog-mode '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "::"
                                        ":::" ":=" "!!" "!=" "!==" "-}" "----" "-->" "->" "->>"
                                        "-<" "-<<" "-~" "#{" "#[" "##" "###" "####" "#(" "#?" "#_"
@@ -87,14 +92,11 @@
                                        "<*>" "<|" "<|>" "<$" "<$>" "<!--" "<-" "<--" "<->" "<+"
                                        "<+>" "<=" "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<"
                                        "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
-
   (global-ligature-mode 't))
 
-;; ibuffer для диалога выбора буфера
 (use-package ibuffer
   :bind ([remap list-buffers] . ibuffer))
 
-;; org-mode
 (use-package org
   :preface (defun my/org-set-created()
 	     (interactive)
@@ -132,14 +134,11 @@
   (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
   (setq org-refile-use-outline-path 'file)
   (setq org-agenda-files (list org-directory))
-  ;; Приоритет от A до E
   (setq org-priority-default 67)
   (setq org-priority-lowest 69)
-  ;; org-babel
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((shell . t)))
-  ;; org-capture-templates
   (add-to-list 'org-capture-templates
 	       '("i" "Inbox"
 		 entry (file my/org-inbox-file-name)
@@ -161,11 +160,9 @@
 		 "* %?%(my/org-set-created)"
 		 :empty-lines 1 :clock-in t :clock-resume t)))
 
-;; magit
 (use-package magit
   :ensure t)
 
-;; Тема оформления
 (use-package monokai-theme
   :ensure t
   :config
@@ -176,7 +173,6 @@
   :config
   (which-key-mode))
 
-;; Программирование
 (use-package go-mode
   :ensure t
   :init
@@ -184,8 +180,6 @@
   :hook ((before-save . gofmt-before-save)
          (go-mode . (lambda () (local-set-key [f5] 'project-compile)))))
 
-
-;; музыка в emms
 (use-package emms
   :ensure t
   :config
@@ -208,9 +202,9 @@
 
   (setq emms-track-description-function 'my/emms-track-description))
 
-;; Загрузка локального конфиг-файла
+;;; Загрузка локального конфиг-файла
 (me/load-config-file ".secret/config")
 
-;; Отдельный файл для хранения всех пользовательских настроек
+;;; Отдельный файл для хранения всех пользовательских настроек
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (ignore-errors (load custom-file))
