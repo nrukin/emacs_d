@@ -139,6 +139,15 @@
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((shell . t)))
+
+  ;; https://nrukin.github.io/jira-prop-hotkey.html
+  (defun org-set-jira(jira-value)
+    "set jira property at current heading"
+    (interactive (list (read-from-minibuffer "Jira? " (org-entry-get nil "jira"))))
+    (org-set-property "jira" jira-value))
+
+  (define-key org-mode-map (kbd "<f7>") 'org-set-jira)
+  
   (add-to-list 'org-capture-templates
 	       '("i" "Inbox"
 		 entry (file my/org-inbox-file-name)
