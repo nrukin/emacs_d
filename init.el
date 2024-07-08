@@ -212,6 +212,7 @@
   (setq emms-track-description-function 'my/emms-track-description))
 
 (use-package hydra
+  :ensure t
   :defer 2
   :bind (("<f9>" . hydra-clock/body)
 	 ("<f8>" . hydra-go/body))
