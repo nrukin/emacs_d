@@ -69,3 +69,29 @@
 		 entry (file my/org-inbox-file-name)
 		 "* %?%(my/org-set-created)"
 		 :empty-lines 1 :clock-in t :clock-resume t)))
+
+(use-package org-id
+  :requires org
+  :after (org)
+  :ensure nil
+  :init
+  (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id))
+
+(use-package toc-org
+  :requires org
+  :ensure t
+  :after (org)
+  :hook (org-mode . toc-org-mode))
+
+(use-package verb
+  :requires org
+  :after (org)
+  :config
+  (with-eval-after-load 'org
+    (define-key org-mode-map (kbd "C-c C-r") verb-command-map)))
+
+(defun my/ediff-org-prepare ()
+  (when (eq major-mode 'org-mode)
+    (org-show-all)))
+
+(add-hook 'ediff-prepare-buffer-hook #'my/ediff-org-prepare)
