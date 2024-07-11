@@ -37,6 +37,7 @@
   (setq org-agenda-files (list org-directory))
   (setq org-priority-default 67)
   (setq org-priority-lowest 69)
+  (setq org-clock-out-remove-zero-time-clocks t)
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((shell . t)))
