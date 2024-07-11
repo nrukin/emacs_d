@@ -84,13 +84,6 @@
   :after (org)
   :hook (org-mode . toc-org-mode))
 
-(use-package verb
-  :requires org
-  :after (org)
-  :config
-  (with-eval-after-load 'org
-    (define-key org-mode-map (kbd "C-c C-r") verb-command-map)))
-
 (defun my/ediff-org-prepare ()
   (when (eq major-mode 'org-mode)
     (org-show-all)))
