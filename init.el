@@ -15,7 +15,7 @@
 (setq
  init-files
  '("config/windows-shell-encoding" ".secret/init" "config/packages"
-   "config/emacs" "config/ligature" "config/org" "config/hydra"
+   "config/emacs" "config/ligature" "config/org" "config/hydra" "config/icons"
    "config/emms" "config/theme" "config/magit" "config/prog" "config/dashboard" ".secret/config"))
 
 (dolist
