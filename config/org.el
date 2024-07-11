@@ -38,6 +38,7 @@
   (setq org-priority-default 67)
   (setq org-priority-lowest 69)
   (setq org-clock-out-remove-zero-time-clocks t)
+  (setq org-clock-report-include-clocking-task t)
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((shell . t)))
