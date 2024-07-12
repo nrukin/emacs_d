@@ -1,6 +1,5 @@
 (use-package all-the-icons
-  :ensure t
-  :if (display-graphic-p))
+  :ensure t)
 
   (use-package all-the-icons-dired
     :requires all-the-icons
