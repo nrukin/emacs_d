@@ -14,7 +14,8 @@
 	 ("C-c c" . org-capture)
 	 :map org-mode-map
 	 ("<f6>" . my/org-set-created))
-  :config (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "PLANNED(p)" "LATER(l)" "DELEGATED(g@)" "|" "DONE(d!)" "CANCELLED(c@)")))
+  :config
+  (setq org-todo-keywords '((sequence "TODO(t)" "PROGRESS(s)" "WAITING(w)" "PLANNED(p)" "LATER(l)" "DELEGATED(g@)" "|" "DONE(d!)" "CANCELLED(c@)")))
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
   (setq org-log-reschedule 'time)
