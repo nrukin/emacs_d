@@ -1,3 +1,5 @@
+(defvar load-elfeed nil "Загружать elfeed")
+
 (use-package elfeed
   :ensure t
   :if load-elfeed
