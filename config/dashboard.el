@@ -36,5 +36,12 @@
 		  "Radio"
 		  ""
 		  (lambda (&rest _) (emms-streams)))) t)
+
+  (when load-mastodon
+    (add-to-list 'dashboard-navigator-buttons
+		 `((,(all-the-icons-faicon "comments-o" :height 1.1 :v-adjust 0.0)
+		    "Mastodon"
+		    ""
+		    (lambda (&rest _) (mastodon)))) t))
   
   (dashboard-setup-startup-hook))
