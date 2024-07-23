@@ -43,5 +43,7 @@
 		    "Mastodon"
 		    ""
 		    (lambda (&rest _) (mastodon)))) t))
+
+  (setq initial-buffer-choice (lambda () (get-buffer-create dashboard-buffer-name)))
   
   (dashboard-setup-startup-hook))
