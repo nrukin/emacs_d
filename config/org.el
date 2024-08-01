@@ -1,3 +1,5 @@
+(defvar org-directory "~/org" "Каталог файлов org-mode")
+
 (use-package org
   :preface (defun my/org-set-created()
 	     (interactive)
