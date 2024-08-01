@@ -37,6 +37,13 @@
 		  ""
 		  (lambda (&rest _) (emms-streams)))) t)
 
+  (when load-elfeed
+    (add-to-list 'dashboard-navigator-buttons
+		 `((,(all-the-icons-faicon "rss" :height 1.1 :v-adjust 0.0)
+		    "Elfeed"
+		    ""
+		    (lambda (&rest _) (elfeed)))) t))
+
   (when load-mastodon
     (add-to-list 'dashboard-navigator-buttons
 		 `((,(all-the-icons-faicon "comments-o" :height 1.1 :v-adjust 0.0)
