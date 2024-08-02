@@ -16,7 +16,9 @@
  init-files
  '("config/windows-shell-encoding" ".secret/init" "config/packages"
    "config/emacs" "config/ligature" "config/org" "config/hydra" "config/icons" "config/elfeed" "config/discover"
-   "config/emms" "config/theme" "config/magit" "config/org-web-tools" "config/prog" "config/dashboard" "config/emoji" "config/mastodon" ".secret/config"))
+   "config/emms" "config/theme" "config/magit" "config/org-web-tools" "config/prog" "config/emoji" "config/mastodon"
+   "config/dashboard"
+   ".secret/config"))
 
 (dolist
     (init-file init-files)
