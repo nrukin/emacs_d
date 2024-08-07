@@ -41,5 +41,6 @@
   :ensure nil
   :hook (go-mode . eglot-ensure)
   (python-mode . eglot-ensure)
+  (csharp-mode . eglot-ensure)
   :after (yasnippet company))
 
