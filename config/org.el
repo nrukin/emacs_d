@@ -99,3 +99,8 @@
     (org-show-all)))
 
 (add-hook 'ediff-prepare-buffer-hook #'my/ediff-org-prepare)
+
+(use-package verb
+  :ensure t
+  :after org
+  :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
