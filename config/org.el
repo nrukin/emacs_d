@@ -104,3 +104,24 @@
   :ensure t
   :after org
   :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
+
+(use-package alert
+  :ensure t
+  :config
+  ;; Add the windows desktop notifications if on windows
+  (when (eq system-type 'windows-nt)
+    (alert-define-style
+     'windows-desktop-notification-style
+     :title "Windows Desktop Notification style"
+     :notifier
+     (lambda (info)
+       (let ((notif-id (w32-notification-notify :title (plist-get info :title) :body (plist-get info :message))))
+         ;; Close it after 3 seconds (no new notification can be sent if left unclosed)
+         (run-with-timer 3 nil `(lambda() (w32-notification-close ,notif-id))))))
+    (setq alert-default-style 'windows-desktop-notification-style)))
+
+(use-package org-alert
+  :ensure t
+  :demand  ; Load it on startup, not lazily
+  :config
+  (org-alert-enable))
