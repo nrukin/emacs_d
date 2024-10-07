@@ -42,6 +42,7 @@
   :hook (go-mode . eglot-ensure)
   (python-mode . eglot-ensure)
   (csharp-mode . eglot-ensure)
+  (cpp-mode . eglot-ensure)
   :after (yasnippet company))
 
 (use-package plantuml-mode
