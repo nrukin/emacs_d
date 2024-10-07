@@ -59,3 +59,7 @@
 
 (use-package free-keys
   :ensure t)
+
+;; Разрешить C-c n n
+;; Фокусировка на выделении
+(put 'narrow-to-region 'disabled nil)
