@@ -44,3 +44,8 @@
   (csharp-mode . eglot-ensure)
   :after (yasnippet company))
 
+(use-package plantuml-mode
+  :mode ".puml"
+  :ensure t
+  :config (add-to-list
+	   'org-src-lang-modes '("plantuml" . plantuml)))
