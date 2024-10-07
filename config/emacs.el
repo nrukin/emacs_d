@@ -14,7 +14,7 @@
   (if (fboundp 'blink-cursor-mode) (blink-cursor-mode 0))
 
   (add-to-list 'default-frame-alist
-	       '(font . "Fira Code-12"))  
+	       '(font . "Fira Code-10"))
 
   (setq default-input-method "russian-computer")
 
