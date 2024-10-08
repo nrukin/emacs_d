@@ -33,15 +33,16 @@
   :ensure t
   :config (yas-global-mode 1))
 
-;; (use-package yasnippet-snippets
-;;   :ensure t
-;;   :after yasnippet)
+(use-package yasnippet-snippets
+  :ensure t
+  :after yasnippet)
 
 (use-package eglot
   :ensure nil
   :hook (go-mode . eglot-ensure)
   (python-mode . eglot-ensure)
   (csharp-mode . eglot-ensure)
+  (cpp-mode . eglot-ensure)
   :after (yasnippet company))
 
 (use-package plantuml-mode
