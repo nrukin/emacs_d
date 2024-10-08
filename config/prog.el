@@ -49,3 +49,7 @@
   :ensure t
   :config (add-to-list
 	   'org-src-lang-modes '("plantuml" . plantuml)))
+
+(use-package yaml-mode
+  :mode ".yml"
+  :ensure t)
