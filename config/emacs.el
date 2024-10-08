@@ -60,6 +60,10 @@
 (use-package free-keys
   :ensure t)
 
+(use-package ace-window
+  :ensure t
+  :bind (("M-o" . ace-window)))
+
 ;; Разрешить C-c n n
 ;; Фокусировка на выделении
 (put 'narrow-to-region 'disabled nil)
