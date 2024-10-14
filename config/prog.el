@@ -3,6 +3,7 @@
 			    (display-line-numbers-mode 1)
 			    (hs-minor-mode)))
 (electric-pair-mode 1)
+(which-function-mode 1)
 (setq compilation-ask-about-save nil)
 
 (use-package rainbow-delimiters
