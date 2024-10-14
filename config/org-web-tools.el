@@ -12,7 +12,7 @@
       (org-mode)
       (insert converted)
       (goto-char (point-min))
-      (insert "* " title "\n")
+      (insert "* TODO " title "\n")
       (org-set-property "CREATED" timestamp)
       (org-set-property "URL" url)
       (buffer-string))))
