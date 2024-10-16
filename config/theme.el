@@ -1,4 +1,4 @@
-(use-package monokai-theme
+(use-package cyberpunk-theme
   :ensure t
   :config
-  (load-theme 'monokai t))
+  (load-theme 'cyberpunk t))
