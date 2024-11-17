@@ -55,3 +55,7 @@
 (use-package yaml-mode
   :mode ".yml"
   :ensure t)
+
+(use-package imenu-list
+  :ensure t
+  :bind ("C-'" . imenu-list-smart-toggle))
