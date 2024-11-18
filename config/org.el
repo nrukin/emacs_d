@@ -75,7 +75,15 @@
 	       '("z" "Interrupt"
 		 entry (file my/org-inbox-file-name)
 		 "* %?%(my/org-set-created)"
-		 :empty-lines 1 :clock-in t :clock-resume t)))
+		 :empty-lines 1 :clock-in t :clock-resume t))
+  (defun my/grab-current-elfeed-entry-as-org-heading ()
+    (when elfeed-show-entry (let ((url (elfeed-entry-link elfeed-show-entry))
+				  (title (elfeed-entry-title elfeed-show-entry)))
+			      (format "* TODO %s%%(my/org-set-created)%%(org-set-property \"URL\" \"%s\")" title url))))
+  (when load-elfeed
+    (add-to-list 'org-capture-templates '("n" "elfeed capture" entry
+					  (file my/org-inbox-file-name)
+					  (function my/grab-current-elfeed-entry-as-org-heading) :empty-lines 1 :immediate-finish t))))
 
 (use-package org-id
   :ensure nil
