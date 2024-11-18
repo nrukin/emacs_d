@@ -52,6 +52,7 @@
     _h_ doc
     _H_ doc buffer
     _v_ format buffer
+    _'_ definitions
     ^^
     "
     ("c" eglot-code-actions)
@@ -61,6 +62,7 @@
     ("h" eldoc)
     ("H" eldoc-doc-buffer)
     ("v" eglot-format-buffer)
+    ("'" imenu-list-smart-toggle :color red)
     ("f" hs-hide-block :color red)
     ("s" hs-show-block :color red)
     ("F" hs-hide-all :color red)
