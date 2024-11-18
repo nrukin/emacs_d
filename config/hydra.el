@@ -1,7 +1,9 @@
 (use-package hydra
   :ensure t
+  :after (go-mode)
   :defer 2
   :bind (("<f9>" . hydra-clock/body)
+	 :map go-mode-map
 	 ("<f8>" . hydra-go/body))
   :preface
   (defun my/org-clock-in-last-with-prefix-arg ()
