@@ -13,9 +13,6 @@
   (setq-default cursor-type 'bar)
   (if (fboundp 'blink-cursor-mode) (blink-cursor-mode 0))
 
-  (add-to-list 'default-frame-alist
-	       '(font . "Fira Code-12"))
-
   (setq default-input-method "russian-computer")
 
   (setq calendar-day-name-array
