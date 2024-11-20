@@ -4,4 +4,4 @@
 ;;   (load-theme 'cyberpunk t))
 (use-package modus-themes
   :ensure t
-  :config (load-theme 'modus-operandi t))
+  :config (load-theme 'modus-vivendi t))
