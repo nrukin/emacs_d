@@ -95,11 +95,6 @@
   :ensure t
   :hook (org-mode . toc-org-mode))
 
-(use-package org-superstar
-  :after org
-  :ensure t
-  :hook (org-mode . (lambda () (org-superstar-mode 1))))
-
 (defun my/ediff-org-prepare ()
   (when (eq major-mode 'org-mode)
     (org-show-all)))
