@@ -16,7 +16,7 @@
  init-files
  '("config/windows-shell-encoding" ".secret/init" "config/packages"
    "config/emacs" "config/elfeed" "config/org" "config/hydra"
-   "config/icons" "config/discover" "config/emms" "config/theme" "config/magit"
+   "config/discover" "config/emms" "config/theme" "config/magit"
    "config/prog" "config/emoji" "config/mastodon" "config/dashboard" ".secret/config"))
 
 (dolist
