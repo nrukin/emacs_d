@@ -1,9 +1,7 @@
 (use-package dashboard
   :ensure t
   :config
-  (setq dashboard-set-heading-icons t)
   (setq dashboard-startup-banner 2)
-  (setq dashboard-set-file-icons t)
   (setq dashboard-projects-backend 'project-el)
   (setq dashboard-items '((recents   . 5)
                           (bookmarks . 5)
@@ -26,27 +24,27 @@
   (setq dashboard-navigator-buttons
 	`(
 	  ;; org-agenda
-	  ((,(all-the-icons-faicon "calendar" :height 1.1 :v-adjust 0.0)
+	  ((,"#"
 	    "Agenda"
 	    ""
 	    (lambda (&rest _) (org-agenda-list))))))
 
   (add-to-list 'dashboard-navigator-buttons
-	       `((,(all-the-icons-faicon "music" :height 1.1 :v-adjust 0.0)
+	       `((,"@"
 		  "Radio"
 		  ""
 		  (lambda (&rest _) (emms-streams)))) t)
 
   (when load-elfeed
     (add-to-list 'dashboard-navigator-buttons
-		 `((,(all-the-icons-faicon "rss" :height 1.1 :v-adjust 0.0)
+		 `((,"%"
 		    "Elfeed"
 		    ""
 		    (lambda (&rest _) (elfeed)))) t))
 
   (when load-mastodon
     (add-to-list 'dashboard-navigator-buttons
-		 `((,(all-the-icons-faicon "comments-o" :height 1.1 :v-adjust 0.0)
+		 `((,"^"
 		    "Mastodon"
 		    ""
 		    (lambda (&rest _) (mastodon)))) t))
