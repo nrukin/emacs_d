@@ -12,10 +12,14 @@
 
 (use-package go-mode
   :ensure t
+  :demand t
   :init
   (setq gofmt-command "goimports")
   :hook ((before-save . gofmt-before-save)
          (go-mode . (lambda () (local-set-key [f5] 'project-compile)))))
+
+(use-package python
+  :demand t)
 
 (use-package go-dlv
   :ensure t)

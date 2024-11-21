@@ -1,12 +1,14 @@
 (use-package hydra
   :ensure t
-  :after (go-mode python)
   :defer 2
+  :after (:all (go-mode python))
   :bind (("<f9>" . hydra-clock/body)
 	 :map go-mode-map
 	 ("<f8>" . hydra-go/body)
 	 :map python-mode-map
-	 ("<f8>" . hydra-py/body))
+	 ("<f8>" . hydra-py/body)
+	 :map org-mode-map
+	 ("<f8>" . hydra-org/body))
   :preface
   (defun my/org-clock-in-last-with-prefix-arg ()
     (interactive)
@@ -29,18 +31,10 @@
     ^^                  _l_ continue last
     ^^                  ^^
     "
-    ("q" nil)
-    ("d" org-clock-display :color red)
-    ("h" org-clock-remove-overlays :color red)
-    ("c" org-clock-cancel :color pink)
-    ("e" org-clock-modify-effort-estimate)
-    ("i" org-clock-in)
-    ("j" org-clock-goto)
-    ("o" org-clock-out)
-    ("r" org-clock-report)
-    ("p" org-pomodoro)
-    ("l" my/org-clock-in-last-with-prefix-arg))
-
+    ("q" nil) ("d" org-clock-display :color red) ("h" org-clock-remove-overlays :color red) ("c" org-clock-cancel :color pink)
+    ("e" org-clock-modify-effort-estimate) ("i" org-clock-in) ("j" org-clock-goto) ("o" org-clock-out) ("r" org-clock-report)
+    ("p" org-pomodoro) ("l" my/org-clock-in-last-with-prefix-arg))
+  
   (defhydra hydra-go (:color blue)
     "
     ^
@@ -56,25 +50,11 @@
     _v_ format buffer
     _'_ definitions
     ^^
-    "
-    ("c" eglot-code-actions)
-    ("r" eglot-rename)
-    ("d" flymake-show-buffer-diagnostics)
-    ("D" flymake-show-project-diagnostics)
-    ("h" eldoc)
-    ("H" eldoc-doc-buffer)
-    ("v" eglot-format-buffer)
-    ("'" imenu-list-smart-toggle :color red)
-    ("f" hs-hide-block :color red)
-    ("s" hs-show-block :color red)
-    ("F" hs-hide-all :color red)
-    ("S" hs-show-all :color red)
-    ("t" go-test-current-file)
-    ("T" go-test-current-project)
-    ("b" go-test-current-file-benchmarks)
-    ("B" go-test-current-project-benchmarks)
-    ("q" nil))
-
+    "    
+    ("c" eglot-code-actions) ("r" eglot-rename) ("q" nil) ("d" flymake-show-buffer-diagnostics) ("D" flymake-show-project-diagnostics)
+    ("h" eldoc) ("H" eldoc-doc-buffer) ("v" eglot-format-buffer) ("'" imenu-list-smart-toggle :color red)
+    ("f" hs-hide-block :color red) ("s" hs-show-block :color red) ("F" hs-hide-all :color red) ("S" hs-show-all :color red)
+    ("t" go-test-current-file) ("T" go-test-current-project) ("b" go-test-current-file-benchmarks) ("B" go-test-current-project-benchmarks) )
 
 (defhydra hydra-py (:color blue)
     "
@@ -92,16 +72,18 @@
     _'_ definitions
     ^^
     "
-    ("c" eglot-code-actions)
-    ("r" eglot-rename)
-    ("q" nil)
-    ("d" flymake-show-buffer-diagnostics)
-    ("D" flymake-show-project-diagnostics)
-    ("h" eldoc)
-    ("H" eldoc-doc-buffer)
-    ("v" eglot-format-buffer)
-    ("'" imenu-list-smart-toggle :color red)
-    ("f" hs-hide-block :color red)
-    ("s" hs-show-block :color red)
-    ("F" hs-hide-all :color red)
-    ("S" hs-show-all :color red)))
+    ("c" eglot-code-actions) ("r" eglot-rename) ("q" nil) ("d" flymake-show-buffer-diagnostics) ("D" flymake-show-project-diagnostics) ("h" eldoc)
+    ("H" eldoc-doc-buffer) ("v" eglot-format-buffer) ("'" imenu-list-smart-toggle :color red) ("f" hs-hide-block :color red) ("s" hs-show-block :color red)
+    ("F" hs-hide-all :color red) ("S" hs-show-all :color red))
+
+(defhydra hydra-org (:color blue)
+    "
+    ^
+    ^Edit^                  
+    ^─────^─────────────────
+    _t_ insert structure template
+    _q_ quit
+    ^^
+    "
+    ("t" org-insert-structure-template)
+    ("q" nil)))
