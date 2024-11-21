@@ -68,5 +68,7 @@
   :ensure t
   :bind ("C-'" . imenu-list-smart-toggle))
 
-;; (use-package pyvenv
-;;   :ensure t)
+(use-package treemacs
+  :defer t
+  :ensure t
+  :bind ("C-x !" . treemacs-select-window))
