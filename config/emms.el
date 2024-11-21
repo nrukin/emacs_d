@@ -1,5 +1,8 @@
+(defvar load-emms nil "Загружать emms")
+
 (use-package emms
   :ensure t
+  :if load-emms
   :config
   (require 'emms-setup)
   (emms-all)

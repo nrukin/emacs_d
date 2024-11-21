@@ -29,11 +29,12 @@
 	    ""
 	    (lambda (&rest _) (org-agenda-list))))))
 
-  (add-to-list 'dashboard-navigator-buttons
-	       `((,"@"
-		  "Radio"
-		  ""
-		  (lambda (&rest _) (emms-streams)))) t)
+  (when load-emms
+    (add-to-list 'dashboard-navigator-buttons
+		 `((,"@"
+		    "Radio"
+		    ""
+		    (lambda (&rest _) (emms-streams)))) t))
 
   (when load-elfeed
     (add-to-list 'dashboard-navigator-buttons
