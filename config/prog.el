@@ -26,9 +26,17 @@
 (use-package go-playground
   :ensure t)
 
-(use-package company
+;; (use-package company
+;;   :ensure t
+;;   :hook (prog-mode . company-mode))
+
+(use-package corfu
   :ensure t
-  :hook (prog-mode . company-mode))
+  :custom
+  (corfu-cycle t)
+  (corfu-auto t)
+  :init
+  (global-corfu-mode))
 
 (use-package yasnippet
   :ensure t
@@ -59,3 +67,6 @@
 (use-package imenu-list
   :ensure t
   :bind ("C-'" . imenu-list-smart-toggle))
+
+;; (use-package pyvenv
+;;   :ensure t)

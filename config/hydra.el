@@ -1,10 +1,12 @@
 (use-package hydra
   :ensure t
-  :after (go-mode)
+  :after (go-mode python)
   :defer 2
   :bind (("<f9>" . hydra-clock/body)
 	 :map go-mode-map
-	 ("<f8>" . hydra-go/body))
+	 ("<f8>" . hydra-go/body)
+	 :map python-mode-map
+	 ("<f8>" . hydra-py/body))
   :preface
   (defun my/org-clock-in-last-with-prefix-arg ()
     (interactive)
@@ -71,4 +73,35 @@
     ("T" go-test-current-project)
     ("b" go-test-current-file-benchmarks)
     ("B" go-test-current-project-benchmarks)
-    ("q" nil)))
+    ("q" nil))
+
+
+(defhydra hydra-py (:color blue)
+    "
+    ^
+    ^Code^                  ^Folding^         
+    ^─────^─────────────────^───────^─────────
+    _c_ code actions        _f_ fold          
+    _r_ rename              _s_ unfold        
+    _q_ quit                _F_ fold all      
+    _d_ buffer diagnostics  _S_ unfold all    
+    _D_ project diagnostics
+    _h_ doc
+    _H_ doc buffer
+    _v_ format buffer
+    _'_ definitions
+    ^^
+    "
+    ("c" eglot-code-actions)
+    ("r" eglot-rename)
+    ("q" nil)
+    ("d" flymake-show-buffer-diagnostics)
+    ("D" flymake-show-project-diagnostics)
+    ("h" eldoc)
+    ("H" eldoc-doc-buffer)
+    ("v" eglot-format-buffer)
+    ("'" imenu-list-smart-toggle :color red)
+    ("f" hs-hide-block :color red)
+    ("s" hs-show-block :color red)
+    ("F" hs-hide-all :color red)
+    ("S" hs-show-all :color red)))
