@@ -3,7 +3,7 @@
 * Добавить если нужно настроить шрифт и включить лигатуры
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'default-frame-alist
-	       '(font . "Fira Code-12"))
+  	     '(font . "Fira Code-12"))
   ((me/load-config-file "config/ligature"))
 #+END_SRC
 
