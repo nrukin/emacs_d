@@ -5,6 +5,7 @@
 (electric-pair-mode 1)
 (which-function-mode 1)
 (setq compilation-ask-about-save nil)
+(setq compilation-scroll-output t)
 
 (use-package rainbow-delimiters
   :ensure t
