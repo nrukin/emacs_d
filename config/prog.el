@@ -31,17 +31,9 @@
 (use-package go-playground
   :ensure t)
 
-;; (use-package company
-;;   :ensure t
-;;   :hook (prog-mode . company-mode))
-
-(use-package corfu
+(use-package company
   :ensure t
-  :custom
-  (corfu-cycle t)
-  (corfu-auto t)
-  :init
-  (global-corfu-mode))
+  :hook (prog-mode . company-mode))
 
 (use-package yasnippet
   :ensure t
