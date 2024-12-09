@@ -66,6 +66,10 @@
   :ensure t
   :bind (("M-o" . ace-window)))
 
+(use-package delsel
+  :ensure nil
+  :hook (after-init . delete-selection-mode))
+
 ;; Разрешить C-c n n
 ;; Фокусировка на выделении
 (put 'narrow-to-region 'disabled nil)
