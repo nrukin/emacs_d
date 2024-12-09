@@ -44,7 +44,12 @@
   (setq kept-new-versions 4)
   (setq kept-old-versions 4)
   (global-auto-revert-mode t)
-  (setq create-lockfiles nil))
+  (setq create-lockfiles nil)
+
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*\\(Warnings\\|Compile-Log\\)\\*\\'"
+		 (display-buffer-no-window)
+		 (allow-no-window . t))))
 
 (use-package ibuffer
   :bind ([remap list-buffers] . ibuffer))
