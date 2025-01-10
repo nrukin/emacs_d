@@ -11,15 +11,13 @@
     (format-time-string "%Y-%m-%d %H:%M" (seconds-to-time date)))
 
   (defun elfeed-eww-show ()
-  (interactive)
-  (when (elfeed-entry-p elfeed-show-entry)
-    (let ((link (elfeed-entry-link elfeed-show-entry)))
-      (eww-browse-url link)))))
+    (interactive)
+    (when (elfeed-entry-p elfeed-show-entry)
+      (let ((link (elfeed-entry-link elfeed-show-entry)))
+	(eww-browse-url link)))))
 
-(use-package elfeed-protocol
-  :after (elfeed)
-  :ensure t  
-  :config
-  (setq elfeed-protocol-enabled-protocols '(fever))
-  (elfeed-protocol-enable))
-
+(use-package elfeed-org
+  :ensure t
+  :if load-elfeed  
+  :config (elfeed-org)
+  (setq rmh-elfeed-org-files (list "~/.emacs.d/.secret/elfeed.org")))
