@@ -26,28 +26,28 @@
   (setq dashboard-navigator-buttons
 	`(
 	  ;; org-agenda
-	  ((,(all-the-icons-faicon "calendar" :height 1.1 :v-adjust 0.0)
+	  ((, (get-dashboard-faicon "#" "calendar")
 	    "Agenda"
 	    ""
 	    (lambda (&rest _) (org-agenda-list))))))
 
   (when load-emms
     (add-to-list 'dashboard-navigator-buttons
-		 `((,(all-the-icons-faicon "music" :height 1.1 :v-adjust 0.0)
+		 `((,(get-dashboard-faicon "%" "music")
 		    "Radio"
 		    ""
 		    (lambda (&rest _) (emms-streams)))) t))
 
   (when load-elfeed
     (add-to-list 'dashboard-navigator-buttons
-		 `((,(all-the-icons-faicon "rss" :height 1.1 :v-adjust 0.0)
+		 `((,(get-dashboard-faicon "$" "rss")
 		    "Elfeed"
 		    ""
 		    (lambda (&rest _) (elfeed)))) t))
 
   (when load-mastodon
     (add-to-list 'dashboard-navigator-buttons
-		 `((,(all-the-icons-faicon "comments-o" :height 1.1 :v-adjust 0.0)
+		 `((,(get-dashboard-faicon "@" "comments-o")
 		    "Mastodon"
 		    ""
 		    (lambda (&rest _) (mastodon)))) t))
