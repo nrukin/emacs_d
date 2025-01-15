@@ -16,8 +16,9 @@
       (let ((link (elfeed-entry-link elfeed-show-entry)))
 	(eww-browse-url link)))))
 
-(use-package elfeed-org
+(use-package elfeed-protocol
+  :after (elfeed)
   :ensure t
-  :if load-elfeed  
-  :config (elfeed-org)
-  (setq rmh-elfeed-org-files (list "~/.emacs.d/.secret/elfeed.org")))
+  :config
+  (setq elfeed-protocol-enabled-protocols '(fever))
+  (elfeed-protocol-enable))
