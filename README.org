@@ -6,5 +6,61 @@
   	     '(font . "Fira Code-12"))
   ((me/load-config-file "config/ligature"))
 #+END_SRC
+* Примеры файлы локальных настроек
+** init.el
+=~/.emacs.d/.secret/init.el=\\
+#+begin_src emacs-lisp
+  (setq org-directory "~/org")
+  (setq use-dark-theme t)
+#+end_src
+** config.el
+=~/.emacs.d/.secret/config.el=\\
+#+begin_src emacs-lisp
+  ;; Настройка кодировки windows при запуске внутри винды
+  (windows-shell-encoding-config)
 
+  ;; Настройка иконок для категорий org-mode
+  (setq org-agenda-category-icon-alist
+	`(("work" ,(list (all-the-icons-faicon "cogs")) nil nil :ascent center)
+	  ("org" ,(list (all-the-icons-faicon "tasks")) nil nil :ascent center)
+	  ("vacation" ,(list (all-the-icons-faicon "sun-o")) nil nil :ascent center)
+	  ("birthday" ,(list (all-the-icons-faicon "birthday-cake")) nil nil :ascent center)
+	  ("events" ,(list (all-the-icons-faicon "calendar")) nil nil :ascent center)
+	  ("inbox" ,(list (all-the-icons-faicon "inbox")) nil nil :ascent center)
+	  ("other" ,(list (all-the-icons-faicon "coffee")) nil nil :ascent center)
+	  ("review" ,(list (all-the-icons-faicon "pencil-square-o")) nil nil :ascent center)
+	  ("timerep" ,(list (all-the-icons-faicon "clock-o")) nil nil :ascent center)))
+
+  ;; Настройки табличного представления agenda
+  (setq org-columns-default-format "%80ITEM %TODO %CATEGORY %PRIORITY(PRI) %SCHEDULED(SHED) %DEADLINE(DLN) %JIRA %TAGS %CLOCKSUM_T %CLOCKSUM %17Effort(Estimated Effort){:}")
+
+  ;; Настройка отчета по времени в agenda
+  (setq org-agenda-clockreport-parameter-plist '(:fileskip0 t :maxlevel 4 :tags t :narrow 80! :level t :properties ("jira" "TODO") :inherit-props t :link t))
+
+  ;; Устанавливает ссылку на ячейку в ячейке с номером jira
+  (defun stdp/jirify-cell ()
+    (interactive)
+    (org-table-get-field nil (format "https://jira.petrovich.tech/browse/%s"
+				     (string-trim (substring-no-properties
+						   (org-table-get-field)))))
+    (org-table-align))
+
+  ;; Настройка eglot для c-sharp
+  (with-eval-after-load 'eglot
+    (add-to-list 'eglot-server-programs
+		 '(csharp-mode . ("~/omnisharp/OmniSharp.exe" "-lsp"))))
+
+  ;; Настройка eglot для python
+  (with-eval-after-load 'eglot
+    (add-to-list 'eglot-server-programs
+		 '(python-mode . ("python" "-m" "pylsp"))))
+
+  ;; Отключение некоторых горячих клавиш
+  ;; конкретно отключаю то что плохо работает в WSL
+  (global-unset-key (kbd "C-z"))
+  (global-unset-key (kbd "f11"))
+
+  ;; Настройка PlantUML
+  (setq plantuml-default-exec-mode 'executable)
+#+end_src
 
