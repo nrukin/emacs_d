@@ -8,6 +8,7 @@
 
   (setq ring-bell-function 'ignore)
   (setq use-dialog-box nil)
+  (setq use-file-dialog nil)
   (fset 'yes-or-no-p 'y-or-n-p)
 
   (setq-default cursor-type 'bar)
