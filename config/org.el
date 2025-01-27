@@ -1,6 +1,7 @@
 (defvar org-directory "~/org" "Каталог файлов org-mode")
 
 (use-package org
+  :after (org-contrib)
   :preface (defun my/org-set-created()
 	     (interactive)
 	     (org-set-property
@@ -105,3 +106,7 @@
   :ensure t
   :after org
   :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
+
+(use-package org-contrib
+  :ensure t
+  :config (add-to-list 'org-export-backends 'confluence))
