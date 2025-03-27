@@ -22,6 +22,9 @@
 (use-package python
   :demand t)
 
+(use-package kotlin-mode
+  :ensure t)
+
 (use-package go-dlv
   :ensure t)
 
