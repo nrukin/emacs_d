@@ -10,7 +10,9 @@
 	       "[%Y-%m-%d %a %H:%M]"
 	       (seconds-to-time (current-time)))))
   (defun my/org-inbox-file-name()
-    (file-name-concat org-directory  "inbox.org"))
+    (file-name-concat org-directory "inbox.org"))
+  (defun my/org-rl-file-name()
+      (file-name-concat org-directory "rl.org"))
   (setq org-capture-templates '())
   :bind (("C-c l" . org-store-link)
 	 ("C-c a" . org-agenda)
@@ -83,7 +85,7 @@
 			      (format "* TODO %s%%(my/org-set-created)%%(org-set-property \"URL\" \"%s\")" title url))))
   (when load-elfeed
     (add-to-list 'org-capture-templates '("n" "elfeed capture" entry
-					  (file my/org-inbox-file-name)
+					  (file my/org-rl-file-name)
 					  (function my/grab-current-elfeed-entry-as-org-heading) :empty-lines 1 :immediate-finish t))))
 
 (use-package org-id
