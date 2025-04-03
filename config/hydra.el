@@ -8,7 +8,9 @@
 	 :map python-mode-map
 	 ("<f8>" . hydra-py/body)
 	 :map org-mode-map
-	 ("<f8>" . hydra-org/body))
+	 ("<f8>" . hydra-org/body)
+	 :map c++-mode-map
+	 ("<f8>" . hydra-cpp/body))
   :preface
   (defun my/org-clock-in-last-with-prefix-arg ()
     (interactive)
@@ -34,7 +36,7 @@
     ("q" nil) ("d" org-clock-display :color red) ("h" org-clock-remove-overlays :color red) ("c" org-clock-cancel :color pink)
     ("e" org-clock-modify-effort-estimate) ("i" org-clock-in) ("j" org-clock-goto) ("o" org-clock-out) ("r" org-clock-report)
     ("p" org-pomodoro) ("l" my/org-clock-in-last-with-prefix-arg))
-  
+
   (defhydra hydra-go (:color blue)
     "
     ^
@@ -50,21 +52,21 @@
     _v_ format buffer
     _'_ definitions
     ^^
-    "    
+    "
     ("c" eglot-code-actions) ("r" eglot-rename) ("q" nil) ("d" flymake-show-buffer-diagnostics) ("D" flymake-show-project-diagnostics)
     ("h" eldoc) ("H" eldoc-doc-buffer) ("v" eglot-format-buffer) ("'" imenu-list-smart-toggle :color red)
     ("f" hs-hide-block :color red) ("s" hs-show-block :color red) ("F" hs-hide-all :color red) ("S" hs-show-all :color red)
     ("t" go-test-current-file) ("T" go-test-current-project) ("b" go-test-current-file-benchmarks) ("B" go-test-current-project-benchmarks) )
 
-(defhydra hydra-py (:color blue)
+  (defhydra hydra-py (:color blue)
     "
     ^
-    ^Code^                  ^Folding^         
+    ^Code^                  ^Folding^
     ^─────^─────────────────^───────^─────────
-    _c_ code actions        _f_ fold          
-    _r_ rename              _s_ unfold        
-    _q_ quit                _F_ fold all      
-    _d_ buffer diagnostics  _S_ unfold all    
+    _c_ code actions        _f_ fold
+    _r_ rename              _s_ unfold
+    _q_ quit                _F_ fold all
+    _d_ buffer diagnostics  _S_ unfold all
     _D_ project diagnostics
     _h_ doc
     _H_ doc buffer
@@ -76,10 +78,30 @@
     ("H" eldoc-doc-buffer) ("v" eglot-format-buffer) ("'" imenu-list-smart-toggle :color red) ("f" hs-hide-block :color red) ("s" hs-show-block :color red)
     ("F" hs-hide-all :color red) ("S" hs-show-all :color red))
 
-(defhydra hydra-org (:color blue)
+  (defhydra hydra-cpp (:color blue)
     "
     ^
-    ^Edit^                  
+    ^Code^                  ^Folding^
+    ^─────^─────────────────^───────^─────────
+    _c_ code actions        _f_ fold
+    _r_ rename              _s_ unfold
+    _q_ quit                _F_ fold all
+    _d_ buffer diagnostics  _S_ unfold all
+    _D_ project diagnostics
+    _h_ doc
+    _H_ doc buffer
+    _v_ format buffer
+    _'_ definitions
+    ^^
+    "
+    ("c" eglot-code-actions) ("r" eglot-rename) ("q" nil) ("d" flymake-show-buffer-diagnostics) ("D" flymake-show-project-diagnostics) ("h" eldoc)
+    ("H" eldoc-doc-buffer) ("v" eglot-format-buffer) ("'" imenu-list-smart-toggle :color red) ("f" hs-hide-block :color red) ("s" hs-show-block :color red)
+    ("F" hs-hide-all :color red) ("S" hs-show-all :color red))
+
+  (defhydra hydra-org (:color blue)
+    "
+    ^
+    ^Edit^
     ^─────^─────────────────
     _t_ insert structure template
     _q_ quit
