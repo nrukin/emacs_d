@@ -72,3 +72,9 @@
   :defer t
   :ensure t
   :bind ("C-x !" . treemacs-select-window))
+
+(use-package systemd
+  :ensure t)
+
+(use-package caddyfile
+  :ensure t)
