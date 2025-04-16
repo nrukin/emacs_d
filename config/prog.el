@@ -76,5 +76,7 @@
 (use-package systemd
   :ensure t)
 
-(use-package caddyfile
-  :ensure t)
+(use-package caddyfile-mode
+  :ensure t
+  :mode (("Caddyfile\\'" . caddyfile-mode)
+         ("caddy\\.conf\\'" . caddyfile-mode)))
