@@ -80,3 +80,20 @@
   :ensure t
   :mode (("Caddyfile\\'" . caddyfile-mode)
          ("caddy\\.conf\\'" . caddyfile-mode)))
+
+;; Следующая и предыдущая строка с центрированием
+(defun my/next-line-recenter ()
+  (interactive)
+  (next-line)
+  (recenter))
+
+(defun my/previous-line-recenter ()
+  (interactive)
+  (previous-line)
+  (recenter))
+(global-set-key (kbd "C-c C-p") 'my/next-line-recenter)
+
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (keymap-set prog-mode-map "C-c n" 'my/next-line-recenter)
+            (keymap-set prog-mode-map "C-c p" 'my/previous-line-recenter)))
