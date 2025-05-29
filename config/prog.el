@@ -58,7 +58,9 @@
   :mode ".puml"
   :ensure t
   :config (add-to-list
-	   'org-src-lang-modes '("plantuml" . plantuml)))
+	   'org-src-lang-modes '("plantuml" . plantuml))
+  (org-babel-do-load-languages 'org-babel-load-languages
+			       '((plantuml . t))))
 
 (use-package yaml-mode
   :mode ".yml"
