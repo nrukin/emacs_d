@@ -82,16 +82,19 @@
          ("caddy\\.conf\\'" . caddyfile-mode)))
 
 ;; Следующая и предыдущая строка с центрированием
-(defun my/next-line-recenter ()
-  (interactive)
-  (next-line)
+(defun my/next-line-recenter (numtimes)
+  (interactive "p")
+  (while (> numtimes 0)
+    (next-line)
+    (setq numtimes (1- numtimes)))
   (recenter))
 
-(defun my/previous-line-recenter ()
-  (interactive)
-  (previous-line)
+(defun my/previous-line-recenter (numtimes)
+  (interactive "p")
+  (while (> numtimes 0)
+    (previous-line)
+    (setq numtimes (1- numtimes)))
   (recenter))
-(global-set-key (kbd "C-c C-p") 'my/next-line-recenter)
 
 (add-hook 'prog-mode-hook
           (lambda ()
