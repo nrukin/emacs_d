@@ -3,7 +3,7 @@
   :config
   (setq dashboard-set-heading-icons t)
   (setq dashboard-set-file-icons t)
-  (setq dashboard-startup-banner 2)
+  (setq dashboard-startup-banner (if (display-graphic-p) 'logo 2))
   (setq dashboard-projects-backend 'project-el)
   (setq dashboard-items '((recents   . 5)
                           (bookmarks . 5)
